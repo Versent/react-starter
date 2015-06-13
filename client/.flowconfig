@@ -1,0 +1,11 @@
+[include]
+./client/
+
+[ignore]
+./package.json
+.*/app/assets/*
+
+[libs]
+./support/flow
+
+[options]

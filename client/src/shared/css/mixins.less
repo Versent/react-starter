@@ -1,0 +1,21 @@
+@import "./colours.less";
+
+.note-background() {
+  background: @pale-yellow;
+  border: 1px solid darken(@pale-yellow, 10%);
+  cursor: pointer;
+}
+
+.button-ok() {
+	background: @teal;
+	color: #fff;
+	font-size: .7rem;
+	border-radius: 40px;
+	padding: .4rem 1.5rem;
+	line-height: 1;
+	font-weight: normal;
+
+	&:hover {
+		background: darken(@teal, 10%);
+	}
+}

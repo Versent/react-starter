@@ -1,0 +1,6 @@
+tmp/
+node_modules
+public/bundles
+.DS_Store
+npm-debug.log
+.env

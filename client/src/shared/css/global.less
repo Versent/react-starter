@@ -1,0 +1,104 @@
+@import "./colours.less";
+@import "./settings.less";
+
+body {
+	background: #f1f1f1;
+}
+
+#app {
+}
+
+.border-none {
+	border: none;
+}
+
+h4 {
+	color: @dark-grey;
+}
+
+a {
+	cursor: pointer;
+}
+
+// -----------------------------------------------------------------------------
+// Typography
+// -----------------------------------------------------------------------------
+
+.small {
+	font-size: .8rem;
+}
+
+// -----------------------------------------------------------------------------
+// standard colours (extends basscss colours)
+// -----------------------------------------------------------------------------
+.green {
+	color: @green;
+}
+.orange {
+	color: @orange;
+}
+.red {
+	color: @red;
+}
+
+.bg-pink{
+	background-color: @pink;
+}
+
+// -----------------------------------------------------------------------------
+// forms
+// -----------------------------------------------------------------------------
+
+label {
+	font-size: @body-text-size !important;
+	color: @dark-grey;
+	display: block;
+	margin: .5rem;
+}
+
+input, select, textarea {
+	font-size: @body-text-size !important;
+	border: 1px solid @light-grey;
+	border-radius: 3px;
+	color: @dark-grey;
+	background: @white;
+}
+
+// selects that look link links
+.select-link {
+	border: none;
+	font-size: @body-text-size;
+	background: none;
+	color: @blue;
+}
+
+// Overrides for react-select
+.Select-control {
+	height: 2.25rem;
+}
+
+// -----------------------------------------------------------------------------
+// animations
+// -----------------------------------------------------------------------------
+
+.windowblind-enter { // from
+	opacity: 0.01;
+	transition: all .2s ease-in;
+	transform: translateY(-20px);
+}
+
+.windowblind-enter.windowblind-enter-active { // to
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.windowblind-leave { // from
+	opacity: 1;
+	transition: all .2s ease-out;
+	transform: translateY(0);
+}
+
+.windowblind-leave.windowblind-leave-active { // to
+	opacity: 0.01;
+	transform: translateY(20px);
+}
