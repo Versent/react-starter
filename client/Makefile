@@ -12,18 +12,5 @@ types:
 
 # Run FE unit tests
 test-unit:
-	./node_modules/.bin/mocha --recursive --opts ./spec/mocha.opts ./src/\**/*.test.*
-
-# Run FE integration tests
-test-int-run:
-	./node_modules/.bin/nightwatch
-
-# Run FE integration tests
-# fe-test-int-all:
-# 	./node_modules/.bin/sake fe:test:int:all
-
-# # Run FE Integration tests on CI
-# fe-test-int-all-ci:
-# 	./support/ci/run-fe-tests-int.sh
-
+	./node_modules/.bin/mocha --recursive ./src/\**/*.test.*
 

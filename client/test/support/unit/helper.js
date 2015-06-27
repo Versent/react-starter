@@ -117,7 +117,5 @@ function init() {
 };
 
 module.exports = {
-	init: init,
-	afterEach: afterEach, // DEPRECATE CALLS TO THIS, USE INIT() OBJECT INSTEAD
-	render: render, // DEPRECATE CALLS TO THIS, USE INIT() OBJECT INSTEAD
+	init: init
 }

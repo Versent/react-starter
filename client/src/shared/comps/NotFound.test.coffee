@@ -1,4 +1,4 @@
-helper      = require('../../../spec/support/unit/helper').init()
+helper      = require('../../../test/support/unit/helper').init()
 React       = helper.React
 path        = './NotFound.jsx';
 Comp        = require(path);

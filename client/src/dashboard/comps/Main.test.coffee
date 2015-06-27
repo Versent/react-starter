@@ -1,4 +1,4 @@
-helper            = require('../../../spec/support/unit/helper').init()
+helper            = require('../../../test/support/unit/helper').init()
 React             = helper.React
 SI                = require 'seamless-immutable'
 TU                = React.addons.TestUtils

@@ -1,3 +1,3 @@
 --recursive
 --compilers .:support/mocha/compiler.js
---color
+--colors
