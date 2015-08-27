@@ -3,9 +3,13 @@ package main
 import (
 	"./models"
 	"./stores"
+	"code.google.com/p/go-uuid/uuid"
+	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/boltdb/bolt"
 	"github.com/manyminds/api2go"
+	"log"
 	// "log"
 	"net/http"
 )
@@ -37,26 +41,30 @@ func (r Response) StatusCode() int {
 
 type UserResource struct {
 	UserStore *stores.UserStore
+	Db        *bolt.DB
 }
 
 func (s UserResource) FindAll(r api2go.Request) (api2go.Responder, error) {
-	// var result []User
-	users := s.UserStore.GetAll()
+	var users []models.User
+	// users := s.UserStore.GetAll()
+	s.Db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("users"))
+		c := b.Cursor()
 
-	// log.Println(users)
+		for k, v := c.First(); k != nil; k, v = c.Next() {
+			fmt.Printf("key=%s, value=%s\n", k, v)
 
-	// for _, user := range users {
-	// 	// get all sweets for the user
-	// 	user.Chocolates = []*model.Chocolate{}
-	// 	for _, chocolateID := range user.ChocolatesIDs {
-	// 		choc, err := s.ChocStorage.GetOne(chocolateID)
-	// 		if err != nil {
-	// 			return &Response{}, err
-	// 		}
-	// 		user.Chocolates = append(user.Chocolates, &choc)
-	// 	}
-	// 	result = append(result, *user)
-	// }
+			var user models.User
+			err := json.Unmarshal(v, &user)
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				users = append(users, user)
+			}
+		}
+
+		return nil
+	})
 
 	return &Response{Res: users}, nil
 }
@@ -64,19 +72,26 @@ func (s UserResource) FindAll(r api2go.Request) (api2go.Responder, error) {
 // FindOne to satisfy `api2go.DataSource` interface
 // this method should return the user with the given ID, otherwise an error
 func (s UserResource) FindOne(ID string, r api2go.Request) (api2go.Responder, error) {
-	user, err := s.UserStore.GetOne(ID)
-	if err != nil {
-		return &Response{}, err
+
+	var userJson []byte
+
+	s.Db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("users"))
+		userJson = b.Get([]byte(ID))
+		// fmt.Printf("The answer is: %s\n", userJson)
+		return nil
+	})
+
+	if len(userJson) == 0 {
+		return &Response{}, errors.New("Not found")
 	}
 
-	// user.Chocolates = []*model.Chocolate{}
-	// for _, chocolateID := range user.ChocolatesIDs {
-	// 	choc, err := s.ChocStorage.GetOne(chocolateID)
-	// 	if err != nil {
-	// 		return &Response{}, err
-	// 	}
-	// 	user.Chocolates = append(user.Chocolates, &choc)
-	// }
+	user := models.User{}
+	err := json.Unmarshal(userJson, &user)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	return &Response{Res: user}, nil
 }
 
@@ -87,8 +102,18 @@ func (s UserResource) Create(obj interface{}, r api2go.Request) (api2go.Responde
 		return &Response{}, api2go.NewHTTPError(errors.New("Invalid instance given"), "Invalid instance given", http.StatusBadRequest)
 	}
 
-	id := s.UserStore.Insert(user)
-	user.Id = id
+	user.Id = uuid.New()
+
+	userJson, err := json.Marshal(user)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	_ = s.Db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("users"))
+		_ = b.Put([]byte(user.Id), userJson)
+		return nil
+	})
 
 	return &Response{Res: user, Code: http.StatusCreated}, nil
 }
@@ -113,8 +138,22 @@ func (s UserResource) Update(obj interface{}, r api2go.Request) (api2go.Responde
 func main() {
 	api := api2go.NewAPI("v1")
 
+	db, err := bolt.Open("db.db", 0600, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	db.Update(func(tx *bolt.Tx) error {
+		_, err := tx.CreateBucketIfNotExists([]byte("users"))
+		if err != nil {
+			return fmt.Errorf("create bucket: %s", err)
+		}
+		return nil
+	})
+
 	userStore := stores.NewUserStore()
-	api.AddResource(models.User{}, UserResource{UserStore: userStore})
+	api.AddResource(models.User{}, UserResource{UserStore: userStore, Db: db})
 	fmt.Println("Listening on :4001")
 
 	http.ListenAndServe(":4001", api.Handler())
