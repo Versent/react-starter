@@ -5,6 +5,9 @@ var webpack = require('webpack');
 // Used for extracting CSS into its own file
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var webpackDevServerHost = 'webpack-dev-server/client?http://0.0.0.0:4000'
+var WebpackDevServerOnlyDev = 'webpack/hot/only-dev-server'
+
 var providePlugin = new webpack.ProvidePlugin({
 	fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
 });
@@ -12,8 +15,11 @@ var providePlugin = new webpack.ProvidePlugin({
 module.exports = {
 	context: __dirname,
 	entry: {
-		common:          './src/common.js',
-		dashboard:       './src/dashboard/main.jsx'
+		app:           [
+			webpackDevServerHost,
+			WebpackDevServerOnlyDev,
+			'./src/app.jsx'
+		]
 	},
 	output: {
 		path: path.join(__dirname, 'public', 'bundles'),
@@ -49,7 +55,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		providePlugin,
+		new webpack.HotModuleReplacementPlugin(),
 		new ExtractTextPlugin('bundle.css')
 	],
 	node: { // mocks for Joi validation
