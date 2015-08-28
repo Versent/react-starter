@@ -8,6 +8,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/boltdb/bolt"
+	"github.com/carbocation/interpose"
+	// "github.com/justinas/alice"
 	"github.com/manyminds/api2go"
 	"log"
 	// "log"
@@ -134,6 +136,14 @@ func (s UserResource) Update(obj interface{}, r api2go.Request) (api2go.Responde
 	return &Response{Res: user, Code: http.StatusNoContent}, err
 }
 
+func CORS(h http.Handler) http.Handler {
+	return http.StripPrefix("/old", h)
+}
+
+func myStripPrefix(h http.Handler) http.Handler {
+	return http.StripPrefix("/old/", h)
+}
+
 func main() {
 	api := api2go.NewAPI("v1")
 
@@ -155,5 +165,14 @@ func main() {
 	api.AddResource(models.User{}, UserResource{UserStore: userStore, Db: db})
 	fmt.Println("Listening on :4001")
 
-	http.ListenAndServe(":4001", api.Handler())
+	middle := interpose.New()
+
+	middle.UseHandler(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
+		rw.Header().Set("Access-Control-Allow-Origin", "*")
+		rw.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+	}))
+
+	middle.UseHandler(api.Handler())
+
+	http.ListenAndServe(":4001", middle)
 }

@@ -8,7 +8,9 @@ new WebpackDevServer(webpack(config), {
 	hot:                true,
 	// inline:             true,
 	// quiet:              false,
-	headers: { 'Access-Control-Allow-Origin': '*' },
+	headers: {
+		'Access-Control-Allow-Origin': '*'
+	},
 	historyApiFallback: true,
 	stats: {
 		colors: true

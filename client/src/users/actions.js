@@ -18,8 +18,7 @@ let actionCreators = {
 			// send the request
 			const url = host + '/v1/users';
 			const promise = axios({
-				url: url,
-				method: 'GET'
+				url: url
 			});
 
 			promise.then(function(response) {
@@ -28,7 +27,7 @@ let actionCreators = {
 					const successAction = baseActionCreators.fetchSuccess(users);
 					dispatch(successAction);
 				}, function(response) {
-					log(response)
+					// log(response)
 					// rejection
 					// dispatch the error action
 					const errorAction = baseActionCreators.fetchError(response);
