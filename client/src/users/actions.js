@@ -101,35 +101,35 @@ let actionCreators = {
 			return promise;
 
 		}
-	}
+	},
 
-	// delete(service) {
-	// 	return function(dispatch) {
-	// 		const optimisticAction = baseActionCreators.deleteStart(service);
-	// 		dispatch(optimisticAction);
+	delete(user) {
+		return function(dispatch) {
+			const optimisticAction = baseActionCreators.deleteStart(user);
+			dispatch(optimisticAction);
 
-	// 		const url = `/api/v1/services/${service.id}`;
-	// 		const promise = axios({
-	// 			url: url,
-	// 			method: 'DELETE',
-	// 		});
+			const url = `${host}/v1/users/${user.id}`;
+			const promise = axios({
+				url: url,
+				method: 'DELETE',
+			});
 
-	// 		promise.then(function(response) {
-	// 				// dispatch the success action
-	// 				const successAction = baseActionCreators.deleteSuccess(service);
-	// 				dispatch(successAction);
-	// 			}, function(response) {
-	// 				// rejection
-	// 				// dispatch the error action
-	// 				const errorAction = baseActionCreators.deleteError(response, service);
-	// 				dispatch(errorAction);
-	// 			}).catch(function(err) {
-	// 				console.error(err.toString());
-	// 			});
+			promise.then(function(response) {
+					// dispatch the success action
+					const successAction = baseActionCreators.deleteSuccess(user);
+					dispatch(successAction);
+				}, function(response) {
+					// rejection
+					// dispatch the error action
+					const errorAction = baseActionCreators.deleteError(response, user);
+					dispatch(errorAction);
+				}).catch(function(err) {
+					console.error(err.toString());
+				});
 
-	// 		return promise;
-	// 	};
-	// },
+			return promise;
+		};
+	},
 
 };
 

@@ -16,10 +16,19 @@ class Comp extends React.Component {
 		return this.props.dispatch
 	}
 
+	getRouter() {
+		return this.context.router
+	}
+
+	onList(event) {
+		this.getRouter().transitionTo('/users')
+	}
+
 	render () {
 		const user = this.props.user
 		return (
 			<section className={`${classAdder()} p2`}>
+				<a className='btn btn-outline' onClick={this.onList.bind(this)} href="javascript://">List</a>
 				<h1>{user.attributes.name}</h1>
 			</section>
 		);

@@ -121,8 +121,15 @@ func (s UserResource) Create(obj interface{}, r api2go.Request) (api2go.Responde
 
 // Delete to satisfy `api2go.DataSource` interface
 func (s UserResource) Delete(id string, r api2go.Request) (api2go.Responder, error) {
-	err := s.UserStore.Delete(id)
-	return &Response{Code: http.StatusNoContent}, err
+	_ = s.Db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("users"))
+		err := b.Delete([]byte(id))
+		if err != nil {
+			log.Println(err.Error())
+		}
+		return nil
+	})
+	return &Response{Code: http.StatusNoContent}, nil
 }
 
 //Update stores all changes on the user
@@ -169,7 +176,7 @@ func main() {
 
 	middle.UseHandler(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		rw.Header().Set("Access-Control-Allow-Origin", "*")
-		rw.Header().Set("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+		rw.Header().Set("Access-Control-Allow-Methods", "GET,POST,DELETE,OPTIONS")
 		rw.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	}))
 

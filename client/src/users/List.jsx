@@ -25,6 +25,9 @@ class Comp extends React.Component {
 
 	onDelete(user, event) {
 		event.preventDefault()
+		const action = actions.delete(user)
+		const dispatch = this.getDispatch()
+		dispatch(action)
 	}
 
 	renderUsers() {
