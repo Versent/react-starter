@@ -1,5 +1,7 @@
 import React          from 'react';
+import SI             from 'seamless-immutable'
 import actions        from './actions'
+import Form           from './Form.jsx'
 
 const PT              = React.PropTypes;
 
@@ -7,43 +9,31 @@ class Comp extends React.Component {
 
 	constructor(props, ctx) {
 		super(props, ctx)
-		this.state = {
-			value: ''
+		this.state = this.getCleanState()
+	}
+
+	getCleanState() {
+		return {
+			user: SI({
+				attributes: {}
+			})
 		}
 	}
 
-	onChange(event) {
-		const { value } = event.target
-		this.setState({
-			value
-		})
-	}
-
-	onSave(event) {
-		event.preventDefault()
-		const value = this.state.value
-		const user = {
-			attributes: {
-				name: value
-			}
-		}
+	onCommit(user) {
 		const action = actions.create(user)
 		const dispatch = this.props.dispatch
 		dispatch(action)
-
-		this.setState({
-			value: ''
-		})
+		this.setState(this.getCleanState())
 	}
 
 	render() {
 		return (
 			<section>
-				<form>
-					<label for="name">Name</label>&nbsp;
-					<input type='text' value={this.state.value} onChange={this.onChange.bind(this)} className='field' />&nbsp;
-					<button type='submit' onClick={this.onSave.bind(this)} className='btn btn-outline'>Save</button>
-				</form>
+				<Form
+					{...this.props}
+					user={this.state.user}
+					onCommit={this.onCommit.bind(this)} />
 			</section>
 		);
 	}

@@ -35,25 +35,13 @@ class Comp extends React.Component {
 		event.preventDefault()
 		let user = this.props.user
 
-		// const value = this.state.value
-		// const user = {
-		// 	attributes: {
-		// 		name: value
-		// 	}
-		// }
 		let attributes = user.attributes
 		log(attributes)
 		attributes = attributes.merge(this.state)
 
 		user = user.merge({attributes})
 
-		const action = actions.update(user)
-		const dispatch = this.props.dispatch
-		dispatch(action)
-
-		// this.setState({
-		// 	value: ''
-		// })
+		this.props.onCommit(user)
 	}
 
 	render() {
@@ -71,8 +59,9 @@ class Comp extends React.Component {
 }
 
 Comp.propTypes = {
-	user: PT.object.isRequired,
-	dispatch: PT.func.isRequired
+	dispatch: PT.func.isRequired,
+	onCommit: PT.func.isRequired,
+	user: PT.object.isRequired
 }
 
 export default Comp;

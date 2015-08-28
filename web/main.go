@@ -139,14 +139,14 @@ func (s UserResource) Delete(id string, r api2go.Request) (api2go.Responder, err
 //Update stores all changes on the user
 func (s UserResource) Update(obj interface{}, r api2go.Request) (api2go.Responder, error) {
 	log.Println("Update")
-	log.Println(obj)
+	// log.Println(obj)
 
 	user, ok := obj.(models.User)
 	if !ok {
 		log.Println("Ooops")
 	}
 
-	log.Println(user)
+	// log.Println(user)
 
 	userJson, err := json.Marshal(user)
 	if err != nil {

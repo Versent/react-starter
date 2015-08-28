@@ -32,6 +32,9 @@ class Comp extends React.Component {
 
 	onCommit(user) {
 		log('onCommit', user)
+		const action = actions.update(user)
+		const dispatch = this.props.dispatch
+		dispatch(action)
 	}
 
 	renderForm() {
