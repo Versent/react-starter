@@ -103,6 +103,39 @@ let actionCreators = {
 		}
 	},
 
+	update(user) {
+		return function(dispatch) {
+			const optimisticAction = baseActionCreators.updateStart(user);
+			dispatch(optimisticAction);
+
+			const url = `${host}/v1/users/${user.id}`;
+			const promise = axios({
+				url: url,
+				method: 'PATCH',
+				data: {
+					data: user
+				}
+			});
+
+			promise.then(function(response) {
+					// dispatch the success action
+					const returnedUser = response.data.data;
+					const successAction = baseActionCreators.updateSuccess(returnedUser);
+					dispatch(successAction);
+				}, function(response) {
+					// rejection
+					// dispatch the error action
+					const errorAction = baseActionCreators.updateError(response, user);
+					dispatch(errorAction);
+				}).catch(function(err) {
+					console.error(err.toString());
+				});
+
+			return promise;
+
+		}
+	},
+
 	delete(user) {
 		return function(dispatch) {
 			const optimisticAction = baseActionCreators.deleteStart(user);

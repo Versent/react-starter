@@ -18,6 +18,7 @@ import addMiddleware                     from './shared/services/addMiddleware';
 
 import Index       from './users/Index.jsx'
 import ShowLoader  from './users/ShowLoader.jsx'
+import EditLoader  from './users/EditLoader.jsx'
 import NotFound    from './shared/NotFound.jsx'
 
 addMiddleware();
@@ -54,6 +55,7 @@ class AppRouter extends React.Component {
 					<Route path='/' component={Index} />
 					<Route path='/users' component={Index} />
 					<Route path='/users/:id' component={ShowLoader} />
+					<Route path='/users/:id/edit' component={EditLoader} />
 					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>

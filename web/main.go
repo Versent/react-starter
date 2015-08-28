@@ -2,7 +2,6 @@ package main
 
 import (
 	"./models"
-	"./stores"
 	"code.google.com/p/go-uuid/uuid"
 	"encoding/json"
 	"errors"
@@ -41,8 +40,7 @@ func (r Response) StatusCode() int {
 }
 
 type UserResource struct {
-	UserStore *stores.UserStore
-	Db        *bolt.DB
+	Db *bolt.DB
 }
 
 func (s UserResource) FindAll(r api2go.Request) (api2go.Responder, error) {
@@ -72,13 +70,13 @@ func (s UserResource) FindAll(r api2go.Request) (api2go.Responder, error) {
 
 // FindOne to satisfy `api2go.DataSource` interface
 // this method should return the user with the given ID, otherwise an error
-func (s UserResource) FindOne(ID string, r api2go.Request) (api2go.Responder, error) {
+func (s UserResource) FindOne(Id string, r api2go.Request) (api2go.Responder, error) {
 
 	var userJson []byte
 
 	s.Db.View(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte("users"))
-		userJson = b.Get([]byte(ID))
+		userJson = b.Get([]byte(Id))
 		// fmt.Printf("The answer is: %s\n", userJson)
 		return nil
 	})
@@ -98,12 +96,13 @@ func (s UserResource) FindOne(ID string, r api2go.Request) (api2go.Responder, er
 
 // Create method to satisfy `api2go.DataSource` interface
 func (s UserResource) Create(obj interface{}, r api2go.Request) (api2go.Responder, error) {
+	log.Println("Create")
 	user, ok := obj.(models.User)
 	if !ok {
 		return &Response{}, api2go.NewHTTPError(errors.New("Invalid instance given"), "Invalid instance given", http.StatusBadRequest)
 	}
 
-	user.Id = uuid.New()
+	user.ID = uuid.New()
 
 	userJson, err := json.Marshal(user)
 	if err != nil {
@@ -112,7 +111,10 @@ func (s UserResource) Create(obj interface{}, r api2go.Request) (api2go.Responde
 
 	_ = s.Db.Update(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte("users"))
-		_ = b.Put([]byte(user.Id), userJson)
+		err = b.Put([]byte(user.ID), userJson)
+		if err != nil {
+			log.Println(err.Error())
+		}
 		return nil
 	})
 
@@ -121,6 +123,8 @@ func (s UserResource) Create(obj interface{}, r api2go.Request) (api2go.Responde
 
 // Delete to satisfy `api2go.DataSource` interface
 func (s UserResource) Delete(id string, r api2go.Request) (api2go.Responder, error) {
+	log.Println("Delete")
+
 	_ = s.Db.Update(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte("users"))
 		err := b.Delete([]byte(id))
@@ -134,21 +138,38 @@ func (s UserResource) Delete(id string, r api2go.Request) (api2go.Responder, err
 
 //Update stores all changes on the user
 func (s UserResource) Update(obj interface{}, r api2go.Request) (api2go.Responder, error) {
+	log.Println("Update")
+	log.Println(obj)
+
 	user, ok := obj.(models.User)
 	if !ok {
-		return &Response{}, api2go.NewHTTPError(errors.New("Invalid instance given"), "Invalid instance given", http.StatusBadRequest)
+		log.Println("Ooops")
 	}
 
-	err := s.UserStore.Update(user)
-	return &Response{Res: user, Code: http.StatusNoContent}, err
-}
+	log.Println(user)
 
-func CORS(h http.Handler) http.Handler {
-	return http.StripPrefix("/old", h)
-}
+	userJson, err := json.Marshal(user)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-func myStripPrefix(h http.Handler) http.Handler {
-	return http.StripPrefix("/old/", h)
+	// TODO: get current first and merge
+	_ = s.Db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("users"))
+		err = b.Put([]byte(user.ID), userJson)
+		if err != nil {
+			log.Println(err.Error())
+		}
+		return nil
+	})
+
+	// if !ok {
+	// 	return &Response{}, api2go.NewHTTPError(errors.New("Invalid instance given"), "Invalid instance given", http.StatusBadRequest)
+	// }
+
+	// return &Response{Res: user, Code: http.StatusNoContent}, err
+
+	return &Response{Res: user, Code: http.StatusOK}, nil
 }
 
 func main() {
@@ -168,15 +189,15 @@ func main() {
 		return nil
 	})
 
-	userStore := stores.NewUserStore()
-	api.AddResource(models.User{}, UserResource{UserStore: userStore, Db: db})
+	userResource := UserResource{Db: db}
+	api.AddResource(models.User{}, userResource)
 	fmt.Println("Listening on :4001")
 
 	middle := interpose.New()
 
 	middle.UseHandler(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		rw.Header().Set("Access-Control-Allow-Origin", "*")
-		rw.Header().Set("Access-Control-Allow-Methods", "GET,POST,DELETE,OPTIONS")
+		rw.Header().Set("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS")
 		rw.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	}))
 

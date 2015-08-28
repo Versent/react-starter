@@ -4,6 +4,7 @@ import bows           from 'bows'
 import makeClassAdder from '../shared/services/makeClassAdder.js';
 import { connect }    from 'react-redux';
 import actions        from './actions'
+import Form           from './Form.jsx'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--Show'
@@ -24,9 +25,21 @@ class Comp extends React.Component {
 		this.getRouter().transitionTo('/users')
 	}
 
-	onEdit(event) {
+	onShow(event) {
 		const user = this.props.user
-		this.getRouter().transitionTo(`/users/${user.id}/edit`)
+		this.getRouter().transitionTo(`/users/${user.id}`)
+	}
+
+	onCommit(user) {
+		log('onCommit', user)
+	}
+
+	renderForm() {
+		return (
+			<div>
+				<input />
+			</div>
+		)
 	}
 
 	render () {
@@ -34,8 +47,12 @@ class Comp extends React.Component {
 		return (
 			<section className={`${classAdder()} p2`}>
 				<a className='btn btn-outline' onClick={this.onList.bind(this)} href="javascript://">List</a>&nbsp;
-				<a className='btn btn-outline' onClick={this.onEdit.bind(this)} href="javascript://">Edit</a>
-				<h1>{user.attributes.name}</h1>
+				<a className='btn btn-outline' onClick={this.onShow.bind(this)} href="javascript://">Show</a>
+				<h1>Edit {user.attributes.name}</h1>
+				<Form
+					{...this.props}
+					user={user}
+					onCommit={this.onCommit.bind(this)} />
 			</section>
 		);
 	}

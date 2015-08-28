@@ -23,6 +23,12 @@ class Comp extends React.Component {
 		router.transitionTo('/users/' + user.id)
 	}
 
+	onEdit(user, event) {
+		event.preventDefault()
+		const router = this.getRouter()
+		router.transitionTo('/users/' + user.id + '/edit')
+	}
+
 	onDelete(user, event) {
 		event.preventDefault()
 		const action = actions.delete(user)
@@ -39,6 +45,7 @@ class Comp extends React.Component {
 					</td>
 					<td>
 						<a className='btn regular blue' href="javascript://" onClick={this.onShow.bind(this, user)}>Show</a>
+						<a className='btn regular blue' href="javascript://" onClick={this.onEdit.bind(this, user)}>Edit</a>
 						<a className='btn regular blue' href="javascript://" onClick={this.onDelete.bind(this, user)}>Delete</a>
 					</td>
 				</tr>
