@@ -16,8 +16,9 @@ import addMiddleware                     from './shared/services/addMiddleware';
 // import Index          from './prospects/Index.jsx'
 // import FlashesLoader  from './shared/FlashesLoader.jsx'
 
-import Index from './users/Index.jsx'
-import NotFound from './shared/NotFound.jsx'
+import Index       from './users/Index.jsx'
+import ShowLoader  from './users/ShowLoader.jsx'
+import NotFound    from './shared/NotFound.jsx'
 
 addMiddleware();
 const log = bows('app')
@@ -51,7 +52,8 @@ class AppRouter extends React.Component {
 			<Router {...this.props}>
 				<Route component={AppComponent} >
 					<Route path='/' component={Index} />
-					<Route path='/services' component={Index} />
+					<Route path='/users' component={Index} />
+					<Route path='/users/:id' component={ShowLoader} />
 					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>

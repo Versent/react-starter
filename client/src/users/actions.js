@@ -40,6 +40,36 @@ let actionCreators = {
 		};
 	},
 
+	fetchOne(id) {
+		return function(dispatch) {
+			const action = baseActionCreators.fetchStart();
+			dispatch(action);
+
+			// send the request
+			const url = `${host}/v1/users/${id}`;
+			const promise = axios({
+				url: url
+			});
+
+			promise.then(function(response) {
+					// dispatch the success action
+					const user = response.data.data;
+					const successAction = baseActionCreators.fetchSuccess(user);
+					dispatch(successAction);
+				}, function(response) {
+					// log(response)
+					// rejection
+					// dispatch the error action
+					const errorAction = baseActionCreators.fetchError(response);
+					dispatch(errorAction);
+				}).catch(function(err) {
+					console.error(err.toString());
+				});
+
+			return promise;
+		};
+	},
+
 	create(user) {
 		return function(dispatch) {
 			const optimisticAction = baseActionCreators.createStart(user);

@@ -1,7 +1,8 @@
 /* @flow */
 
 import React          from 'react';
-import makeClassAdder from '../../shared/services/makeClassAdder.js';
+import makeClassAdder from './services/makeClassAdder.js';
+import Icon           from 'react-fa'
 const PT              = React.PropTypes;
 
 const classAdder      = makeClassAdder('shared-Loader');
@@ -26,7 +27,7 @@ class Comp extends React.Component {
 	render() {
 		const style = this.getStyle();
 		return (
-			<i className="fa fa-spinner fa-spin" style={style}></i>
+			<Icon spin name="spinner" />
 		);
 	}
 

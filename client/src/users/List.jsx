@@ -13,12 +13,30 @@ class Comp extends React.Component {
 		return this.props.dispatch
 	}
 
+	getRouter() {
+		return this.context.router
+	}
+
+	onShow(user, event) {
+		event.preventDefault()
+		const router = this.getRouter()
+		router.transitionTo('/users/' + user.id)
+	}
+
+	onDelete(user, event) {
+		event.preventDefault()
+	}
+
 	renderUsers() {
-		return _.map(this.props.users, function(user) {
+		return _.map(this.props.users, (user) => {
 			return (
 				<tr>
 					<td>
 						{user.attributes.name}
+					</td>
+					<td>
+						<a className='btn regular blue' href="javascript://" onClick={this.onShow.bind(this, user)}>Show</a>
+						<a className='btn regular blue' href="javascript://" onClick={this.onDelete.bind(this, user)}>Delete</a>
 					</td>
 				</tr>
 			);
@@ -32,6 +50,7 @@ class Comp extends React.Component {
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
