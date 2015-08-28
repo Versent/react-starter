@@ -38,6 +38,39 @@ let actionCreators = {
 
 			return promise;
 		};
+	},
+
+	create(user) {
+		return function(dispatch) {
+			const optimisticAction = baseActionCreators.createStart(user);
+			dispatch(optimisticAction);
+
+			const url = host + '/v1/users';
+			const promise = axios({
+				url: url,
+				method: 'POST',
+				data: {
+					data: user
+				}
+			});
+
+			promise.then(function(response) {
+					// dispatch the success action
+					const returnedUser = response.data.data;
+					const successAction = baseActionCreators.createSuccess(returnedUser);
+					dispatch(successAction);
+				}, function(response) {
+					// rejection
+					// dispatch the error action
+					const errorAction = baseActionCreators.createError(response, user);
+					dispatch(errorAction);
+				}).catch(function(err) {
+					console.error(err.toString());
+				});
+
+			return promise;
+
+		}
 	}
 
 	// delete(service) {

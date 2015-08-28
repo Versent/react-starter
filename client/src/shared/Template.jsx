@@ -22,7 +22,7 @@ class Comp extends React.Component {
 Comp.displayName = classAdder();
 
 Comp.contextTypes = {
-	router: PT.func
+	router: PT.object
 };
 
 Comp.propTypes = {

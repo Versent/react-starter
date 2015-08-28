@@ -169,7 +169,8 @@ func main() {
 
 	middle.UseHandler(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		rw.Header().Set("Access-Control-Allow-Origin", "*")
-		rw.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+		rw.Header().Set("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+		rw.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	}))
 
 	middle.UseHandler(api.Handler())

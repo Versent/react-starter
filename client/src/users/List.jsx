@@ -3,34 +3,41 @@ import Router         from 'react-router';
 import makeClassAdder from '../shared/services/makeClassAdder.js';
 import { connect }    from 'react-redux';
 import actions        from './actions'
-import New            from './New.jsx'
-import List           from './List.jsx'
 
 const PT              = React.PropTypes;
-const classAdder      = makeClassAdder('users-Index');
+const classAdder      = makeClassAdder('users-List');
 
 class Comp extends React.Component {
-
-	componentDidMount() {
-		this.fetchUsers();
-	}
 
 	getDispatch() {
 		return this.props.dispatch
 	}
 
-	fetchUsers() {
-		const action = actions.fetch()
-		const dispatch = this.getDispatch()
-		dispatch(action)
+	renderUsers() {
+		return _.map(this.props.users, function(user) {
+			return (
+				<tr>
+					<td>
+						{user.attributes.name}
+					</td>
+				</tr>
+			);
+		});
 	}
 
 	render () {
 		return (
-			<section className={`${classAdder()} p2`}>
-				<h1>Users</h1>
-				<New {...this.props} />
-				<List {...this.props} />
+			<section className={`${classAdder()}`}>
+				<table className='table-light'>
+					<thead>
+						<tr>
+							<th>Name</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.renderUsers()}
+					</tbody>
+				</table>
 			</section>
 		);
 	}
@@ -43,15 +50,8 @@ Comp.contextTypes = {
 };
 
 Comp.propTypes = {
+	user: PT.array.isRequired,
 	dispatch: PT.func.isRequired
 }
 
-function mapStateToProps(state) {
-	return {
-		users: state.users
-	};
-}
-
-export default connect(
-	mapStateToProps,
-)(Comp);
+export default Comp;
