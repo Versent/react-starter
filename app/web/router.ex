@@ -35,6 +35,7 @@ defmodule App.Router do
     options   "/users/:id", UsersController, :options
     
     resources "/languages", LanguagesController
+    options "/languages", LanguagesController, :options
     options   "/languages/:id", LanguagesController, :options
   end
 end
