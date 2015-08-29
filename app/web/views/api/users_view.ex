@@ -6,7 +6,7 @@ defmodule App.Api.UsersView do
 
   location "/users/:id"
 
-  attributes [:name, :email]
+  attributes [:name]
 
   has_many :language_users, include: App.Api.LanguagesUsersMinView
   has_many :languages, include: App.Api.LanguagesMinView

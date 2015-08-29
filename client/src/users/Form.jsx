@@ -35,11 +35,12 @@ class Comp extends React.Component {
 		event.preventDefault()
 		let user = this.props.user
 
-		let attributes = user.attributes
-		log(attributes)
-		attributes = attributes.merge(this.state)
+		// let attributes = user.attributes
+		// log(attributes)
+		// attributes = attributes.merge(this.state)
 
-		user = user.merge({attributes})
+		// user = user.merge({attributes})
+		user = user.merge(this.state)
 
 		this.props.onCommit(user)
 	}

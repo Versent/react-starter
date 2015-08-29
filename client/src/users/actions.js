@@ -16,7 +16,7 @@ let actionCreators = {
 			dispatch(action);
 
 			// send the request
-			const url = host + '/v1/users';
+			const url = host + '/users';
 			const promise = axios({
 				url: url
 			});
@@ -46,7 +46,7 @@ let actionCreators = {
 			dispatch(action);
 
 			// send the request
-			const url = `${host}/v1/users/${id}`;
+			const url = `${host}/users/${id}`;
 			const promise = axios({
 				url: url
 			});
@@ -75,12 +75,12 @@ let actionCreators = {
 			const optimisticAction = baseActionCreators.createStart(user);
 			dispatch(optimisticAction);
 
-			const url = host + '/v1/users';
+			const url = host + '/users';
 			const promise = axios({
 				url: url,
 				method: 'POST',
 				data: {
-					data: user
+					user
 				}
 			});
 
@@ -108,12 +108,12 @@ let actionCreators = {
 			const optimisticAction = baseActionCreators.updateStart(user);
 			dispatch(optimisticAction);
 
-			const url = `${host}/v1/users/${user.id}`;
+			const url = `${host}/users/${user.id}`;
 			const promise = axios({
 				url: url,
 				method: 'PATCH',
 				data: {
-					data: user
+					user
 				}
 			});
 
@@ -141,10 +141,10 @@ let actionCreators = {
 			const optimisticAction = baseActionCreators.deleteStart(user);
 			dispatch(optimisticAction);
 
-			const url = `${host}/v1/users/${user.id}`;
+			const url = `${host}/users/${user.id}`;
 			const promise = axios({
 				url: url,
-				method: 'DELETE',
+				method: 'DELETE'
 			});
 
 			promise.then(function(response) {

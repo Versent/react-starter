@@ -3,7 +3,6 @@ defmodule App.User do
 
   schema "users" do
     field :name, :string
-    field :email, :string
 
     has_many :language_users, App.LanguageUser
     has_many :languages, through: [:language_users, :language]
@@ -11,7 +10,7 @@ defmodule App.User do
     timestamps
   end
 
-  @required_fields ~w(name email)
+  @required_fields ~w(name)
   @optional_fields ~w()
 
   @doc """

@@ -31,12 +31,14 @@ defmodule App.Mixfile do
   defp deps do
     [
       {:phoenix, "~> 1.0.0"},
-     {:cowboy, "~> 1.0"},
-     {:ja_serializer, "~> 0.2"},
-     {:phoenix_ecto, "~> 1.1"},
-     {:phoenix_html, "~> 2.1"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:postgrex, ">= 0.0.0"}
-   ]
+      {:cors_plug, "~> 0.1.3"},
+      {:cowboy, "~> 1.0"},
+      {:ja_serializer, "~> 0.2"},
+      {:phoenix_ecto, "~> 1.1"},
+      {:plug_cors, "~> 0.7.3"},
+      {:phoenix_html, "~> 2.1"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:postgrex, ">= 0.0.0"}
+    ]
   end
 end

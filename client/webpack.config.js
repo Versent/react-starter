@@ -5,7 +5,7 @@ var webpack = require('webpack');
 // Used for extracting CSS into its own file
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var webpackDevServerHost = 'webpack-dev-server/client?http://0.0.0.0:4000'
+var webpackDevServerHost = 'webpack-dev-server/client?http://0.0.0.0:4002'
 var WebpackDevServerOnlyDev = 'webpack/hot/only-dev-server'
 
 var providePlugin = new webpack.ProvidePlugin({

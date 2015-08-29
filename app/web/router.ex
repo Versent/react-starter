@@ -7,11 +7,17 @@ defmodule App.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    # plug CORSPlug
   end
 
+
   pipeline :api do
+
+    # plug CORSPlug
+    # plug PlugCors, origins: ["*"]
     # plug :accepts, ["json"]
     plug :accepts, ["json-api"]
+    plug PlugCors, origins: ["http://localhost:4002", "*.domain.com"], methods: ["GET", "POST", "DELETE", "PATCH"], headers: ["Authorization"]
     # plug JaSerializer.ContentTypeNegotiation
   end
 
@@ -25,6 +31,10 @@ defmodule App.Router do
   scope "/api", App.Api do
     pipe_through :api
     resources "/users", UsersController
+    options   "/users", UsersController, :options
+    options   "/users/:id", UsersController, :options
+    
     resources "/languages", LanguagesController
+    options   "/languages/:id", LanguagesController, :options
   end
 end

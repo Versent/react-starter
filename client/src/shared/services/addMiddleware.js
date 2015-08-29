@@ -5,6 +5,9 @@ export default function() {
 
 	axios.interceptors.request.use(function(config) {
 		// config.withCredentials = true;
+
+		// config.headers['Access-Control-Allow-Origin'] = null;
+
 		return config;
 	}, function(error) {
 		// console.log(error)
