@@ -17,6 +17,25 @@ const Loader = createLoader({
 	component: Show,
 	busy: Busy,
 	resources: {
+
+		// languages: {
+		// 	find: function(options) {
+		// 		return options.props.languages
+		// 	},
+		// 	load: function(options) {
+
+		// 	}
+		// },
+
+		// languages_users: {
+		// 	find: function(options) {
+		// 		return options.props.languages_users
+		// 	},
+		// 	load: function(options) {
+
+		// 	}
+		// },
+
 		user: {
 			find: function(options) {
 				const userId = options.context.router.state.params.id
@@ -28,6 +47,7 @@ const Loader = createLoader({
 				return options.dispatch(action);
 			}
 		}
+
 	}
 })
 

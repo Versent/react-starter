@@ -29,6 +29,21 @@ class Comp extends React.Component {
 		this.getRouter().transitionTo(`/users/${user.id}/edit`)
 	}
 
+	renderCheckboxForLang(language) {
+		// TODO check if selected
+		return (
+			<span key={language.id} className='mr2'>
+				<label htmlFor="">{language.attributes.name}</label>
+				<input type='checkbox' value={language.id} />
+			</span>
+		)
+	}
+
+	renderLanguages() {
+		log(this.props.languages)
+		return _.map(this.props.languages, this.renderCheckboxForLang)
+	}
+
 	render () {
 		const user = this.props.user
 		return (
@@ -36,6 +51,7 @@ class Comp extends React.Component {
 				<a className='btn btn-outline' onClick={this.onList.bind(this)} href="javascript://">List</a>&nbsp;
 				<a className='btn btn-outline' onClick={this.onEdit.bind(this)} href="javascript://">Edit</a>
 				<h1>{user.attributes.name}</h1>
+				{this.renderLanguages()}
 			</section>
 		);
 	}
@@ -49,6 +65,8 @@ Comp.contextTypes = {
 
 Comp.propTypes = {
 	dispatch: PT.func.isRequired,
+	languages: PT.array.isRequired,
+	languages_users: PT.array.isRequired,
 	user: PT.object.isRequired
 }
 
