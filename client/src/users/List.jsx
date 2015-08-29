@@ -5,7 +5,7 @@ import { connect }    from 'react-redux';
 import actions        from './actions'
 
 const PT              = React.PropTypes;
-const classAdder      = makeClassAdder('users-List');
+const classAdder      = makeClassAdder('users--List');
 
 class Comp extends React.Component {
 
@@ -79,7 +79,7 @@ Comp.contextTypes = {
 };
 
 Comp.propTypes = {
-	user: PT.array.isRequired,
+	users: PT.array.isRequired,
 	dispatch: PT.func.isRequired
 }
 

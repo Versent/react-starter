@@ -5,7 +5,7 @@ import makeClassAdder from './services/makeClassAdder.js';
 import Icon           from 'react-fa'
 const PT              = React.PropTypes;
 
-const classAdder      = makeClassAdder('shared-Loader');
+const classAdder      = makeClassAdder('shared--Busy');
 const sizeMap         = {
 	s: '.75rem',
 	xs: '.5rem'

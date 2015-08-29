@@ -16,10 +16,11 @@ import addMiddleware                     from './shared/services/addMiddleware';
 // import Index          from './prospects/Index.jsx'
 // import FlashesLoader  from './shared/FlashesLoader.jsx'
 
-import Index       from './users/Index.jsx'
-import ShowLoader  from './users/ShowLoader.jsx'
-import EditLoader  from './users/EditLoader.jsx'
-import NotFound    from './shared/NotFound.jsx'
+import Index           from './users/Index.jsx'
+import ShowLoader      from './users/ShowLoader.jsx'
+import EditLoader      from './users/EditLoader.jsx'
+import NotFound        from './shared/NotFound.jsx'
+import LanguagesList   from './languages/ListLoader.jsx'
 
 addMiddleware();
 const log = bows('app')
@@ -31,7 +32,9 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const allReducers = combineReducers({
-	users: reduxCrud.reducersFor('users')
+	languages:       reduxCrud.reducersFor('languages'),
+	languages_users: reduxCrud.reducersFor('languages_users'),
+	users:           reduxCrud.reducersFor('users')
 });
 
 const store = createStoreWithMiddleware(allReducers);
@@ -39,9 +42,13 @@ const store = createStoreWithMiddleware(allReducers);
 class AppComponent extends React.Component {
 	render() {
 		return (
-			<section className='container'>
-				{/* this will render the child routes */}
-				{this.props.children}
+			<section className='container clearfix'>
+				<div className='col col-8'>
+					{this.props.children}
+				</div>
+				<div className='col col-4'>
+					<LanguagesList />
+				</div>
 			</section>
 		);
 	}

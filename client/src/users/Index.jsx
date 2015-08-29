@@ -7,7 +7,7 @@ import New            from './New.jsx'
 import List           from './List.jsx'
 
 const PT              = React.PropTypes;
-const classAdder      = makeClassAdder('users-Index');
+const classAdder      = makeClassAdder('users--Index');
 
 class Comp extends React.Component {
 

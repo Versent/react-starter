@@ -4,7 +4,7 @@ import React          from 'react';
 import makeClassAdder from '../shared/services/makeClassAdder.js';
 import './NotFound.less'
 
-const classAdder      = makeClassAdder('shared-NotFound');
+const classAdder      = makeClassAdder('shared--NotFound');
 
 class Comp extends React.Component {
 	render () {

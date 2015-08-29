@@ -6,7 +6,7 @@ import bows         from 'bows'
 
 const baseActionCreators = reduxCrud.actionCreatorsFor('users');
 const host = getApi()
-const log  = bows('users.actions')
+const log  = bows('users--actions')
 
 let actionCreators = {
 

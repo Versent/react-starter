@@ -5,26 +5,28 @@ import makeClassAdder from '../shared/services/makeClassAdder.js';
 import { connect }    from 'react-redux';
 import actions        from './actions'
 import Busy           from '../shared/Busy.jsx'
-import Edit           from './Edit.jsx'
+import Component      from './List.jsx'
 import createLoader   from 'redux-loader'
 
 const PT              = React.PropTypes
-const baseClass       = 'users--EditLoader'
+const baseClass       = 'languages--ListLoader'
 const classAdder      = makeClassAdder(baseClass);
 const log             = bows(baseClass)
 
 const Loader = createLoader({
-	component: Edit,
+	component: Component,
 	busy: Busy,
 	resources: {
-		user: {
+		languages: {
 			find: function(options) {
-				const userId = options.context.router.state.params.id
-				return _.find(options.props.users, {id: userId})
+				const langs = options.props.languages
+				if (langs.length) {
+					return options.props.languages  //_.find(options.props.languages, {id: userId})
+				}
 			},
 			load: function(options) {
-				const userId = options.context.router.state.params.id
-				const action = actions.fetchOne(userId)
+				// const userId = options.context.router.state.params.id
+				const action = actions.fetch()
 				return options.dispatch(action);
 			}
 		}
@@ -35,4 +37,4 @@ Loader.contextTypes = {
 	router: PT.object.isRequired
 };
 
-export default connect(state => state)(Loader)
+export default connect(state => state)(Loader);
