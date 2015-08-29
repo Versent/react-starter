@@ -5,6 +5,8 @@ defmodule App.User do
     field :name, :string
     field :email, :string
 
+    has_many :language_users, App.LanguageUser
+    has_many :languages, through: [:language_users, :language]
     timestamps
   end
 

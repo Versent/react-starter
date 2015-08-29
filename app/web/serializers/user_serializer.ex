@@ -1,5 +1,5 @@
-defmodule UserSerializer do
-	use JaSerializer
+# defmodule UserSerializer do
+# 	use JaSerializer
 
-	# attributes [:name, :email]
-end
+# 	# attributes [:name, :email]
+# end

@@ -12,6 +12,7 @@ defmodule App.Router do
   pipeline :api do
     # plug :accepts, ["json"]
     plug :accepts, ["json-api"]
+    # plug JaSerializer.ContentTypeNegotiation
   end
 
   scope "/", App do

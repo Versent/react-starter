@@ -4,12 +4,14 @@ defmodule App.Api.UsersController do
   import Logger
 
   def index(conn, _params) do
-    render conn, model: App.Repo.all(App.User)
+    users = User |> Repo.all |> Repo.preload [:language_users]
+    render conn, model: users
   end
 
   def show(conn, params) do
     # Logger.debug params |> inspect
-    render conn, model: App.Repo.get(User, params["id"])
+    user = User |> Repo.get(params["id"]) |> Repo.preload [:languages]
+    render conn, model: user
   end
 
   def create(conn, %{"user" => user_params}) do

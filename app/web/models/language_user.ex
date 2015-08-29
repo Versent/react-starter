@@ -2,9 +2,8 @@ defmodule App.LanguageUser do
   use App.Web, :model
 
   schema "languages_users" do
-    field :language_id, :integer
-    field :user_id, :integer
-
+    belongs_to :user, App.User
+    belongs_to :language, App.Language
     timestamps
   end
 

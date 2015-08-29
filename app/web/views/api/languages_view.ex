@@ -4,6 +4,8 @@ defmodule App.Api.LanguagesView do
 
   def type, do: "language"
 
+  attributes [:name]
+
   # def attributes(model) do
   #   Map.take(model, [:username, :created_at])
   # end
