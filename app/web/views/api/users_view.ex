@@ -8,15 +8,15 @@ defmodule App.Api.UsersView do
 
   attributes [:name, :email]
 
-  has_many :language_users, include: App.Api.LanguagesUsersView
-  has_many :languages, include: App.Api.LanguagesView
+  has_many :language_users, include: App.Api.LanguagesUsersMinView
+  has_many :languages, include: App.Api.LanguagesMinView
 
   def language_users(model, _conn) do
-  	model.language_users
+    model.language_users
   end
 
   def languages(model, _conn) do
-  	model.languages
+    model.languages
   end
 
 end

@@ -3,8 +3,10 @@ defmodule App.Language do
 
   schema "languages" do
     field :name, :string
+
     has_many :language_users, App.LanguageUser
     has_many :users, through: [:language_users, :user]
+    
     timestamps
   end
 

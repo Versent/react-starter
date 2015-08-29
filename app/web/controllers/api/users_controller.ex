@@ -4,7 +4,7 @@ defmodule App.Api.UsersController do
   import Logger
 
   def index(conn, _params) do
-    users = User |> Repo.all |> Repo.preload [:language_users]
+    users = User |> Repo.all |> Repo.preload [:languages]
     render conn, model: users
   end
 
