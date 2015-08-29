@@ -164,7 +164,5 @@ func (s UserResource) Update(obj interface{}, r api2go.Request) (api2go.Responde
 	// 	return &Response{}, api2go.NewHTTPError(errors.New("Invalid instance given"), "Invalid instance given", http.StatusBadRequest)
 	// }
 
-	// return &Response{Res: user, Code: http.StatusNoContent}, err
-
 	return &Response{Res: user, Code: http.StatusOK}, nil
 }

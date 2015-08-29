@@ -6,79 +6,33 @@ import { connect }    from 'react-redux';
 import actions        from './actions'
 import Busy           from '../shared/Busy.jsx'
 import Show           from './Show.jsx'
+import createLoader   from 'redux-loader'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--ShowLoader'
 const classAdder      = makeClassAdder(baseClass);
 const log             = bows(baseClass)
 
-class Loader extends React.Component {
-
-	// get use from router
-
-	getRouter() {
-		return this.context.router
-	}
-
-	componentDidMount() {
-		log(this.props.user)
-		this.fetchUser()
-	}
-
-	componentWillReceiveProps(nextProps) {
-		log('componentWillReceiveProps', nextProps)
-	}
-
-	getUserId() {
-		const router = this.getRouter()
-		// log(router)
-		// window.router = router
-		return router.state.params.id
-	}
-
-	fetchUser() {
-		const id = this.getUserId()
-		const action = actions.fetchOne(id)
-		this.props.dispatch(action)
-	}
-
-	render() {
-		const lookupId = this.getUserId()
-		const user = _.find(this.props.users, function(user) {
-			return user.id == lookupId
-		})
-
-		log('user', user)
-
-		if (user) {
-			return <Show {...this.props} user={user} />
-		} else {
-			return <Busy />
+const Loader = createLoader({
+	component: Show,
+	busy: Busy,
+	resources: {
+		user: {
+			find: function(options) {
+				const userId = options.context.router.state.params.id
+				return _.find(options.props.users, {id: userId})
+			},
+			load: function(options) {
+				const userId = options.context.router.state.params.id
+				const action = actions.fetchOne(userId)
+				return options.dispatch(action);
+			}
 		}
 	}
-}
+})
 
 Loader.contextTypes = {
 	router: PT.object.isRequired
 };
 
-// function find(users, userId) {
-// 	return _.find(users, function(user) {
-// 		return user.id == userId
-// 	})
-// }
-
-function mapStateToProps(state, props) {
-	// console.log(state)
-	// console.log(props)
-	// const userId = props.userId
-	return {
-		users: state.users
-	};
-}
-
-// function mergeProps
-
-export default connect(
-	mapStateToProps,
-)(Loader);
+export default connect(state => state)(Loader);
