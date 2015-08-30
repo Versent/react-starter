@@ -20,6 +20,7 @@ const Loader = createLoader({
 		languages: {
 			find: function(options) {
 				const langs = options.props.languages
+				// we need a way of telling if request has been done
 				if (langs.length) {
 					return options.props.languages  //_.find(options.props.languages, {id: userId})
 				}
@@ -30,7 +31,7 @@ const Loader = createLoader({
 				return options.dispatch(action);
 			}
 		},
-		
+
 		languagesUsers: {
 			find: function(options) {
 				return options.props.languages_users
