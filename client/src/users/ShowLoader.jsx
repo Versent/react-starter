@@ -39,10 +39,14 @@ const Loader = createLoader({
 		user: function(options) {
 			const userId = options.context.router.state.params.id
 			const id = `users/${userId}`
+			// log('id', id)
+
 			return {
 				id,
-				find: function(users) {
-					return _.find(users, {id: userId})
+				find: function() {
+					const user = _.find(options.props.users, {id: userId})
+					// log('user', user)
+					return user
 				},
 				load: function() {
 					const action = actions.fetchOne(userId)

@@ -22,7 +22,7 @@ const Loader = createLoader({
 			const id = '/languages'
 			return {
 				id,
-				find(props) {
+				find() {
 					const requests  = options.props.requests
 					log(requests)
 					const languages = options.props.languages
@@ -42,8 +42,8 @@ const Loader = createLoader({
 			const id = '/languages_users'
 			return {
 				id,
-				find(props) {
-					return props.languages_users
+				find() {
+					return options.props.languages_users
 				},
 				load() {}
 			}

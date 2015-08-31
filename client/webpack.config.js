@@ -5,7 +5,7 @@ var webpack = require('webpack');
 // Used for extracting CSS into its own file
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var webpackDevServerHost = 'webpack-dev-server/client?http://0.0.0.0:4002'
+var webpackDevServerHost = 'webpack-dev-server/client?http://0.0.0.0:4002' // WebpackDevServer host and port
 var WebpackDevServerOnlyDev = 'webpack/hot/only-dev-server'
 
 var providePlugin = new webpack.ProvidePlugin({
@@ -37,13 +37,10 @@ module.exports = {
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
 			},
 			{
-				test: /\.js/,
-				exclude: /node_modules/,
-				loader: 'babel-loader'},
-			{
-				test: /\.jsx/,
-				exclude: /node_modules/,
-				loader: 'babel-loader?stage=1'},
+				test: /\.js|\.jsx/,
+				include: path.join(__dirname, 'src'),
+				loaders: ['react-hot', 'babel?stage=1']
+			},
 			{
 				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 				loader: 'url-loader?limit=10000&minetype=application/font-woff'

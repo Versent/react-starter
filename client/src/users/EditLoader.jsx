@@ -23,8 +23,8 @@ const Loader = createLoader({
 
 			return {
 				id: id,
-				find: function(props) {
-					return _.find(props.users, {id: userId})
+				find: function() {
+					return _.find(options.props.users, {id: userId})
 				},
 				load: function() {
 					const action = actions.fetchOne(userId)

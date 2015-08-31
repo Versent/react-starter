@@ -29,23 +29,29 @@ class Comp extends React.Component {
 		this.getRouter().transitionTo(`/users/${user.id}/edit`)
 	}
 
+	onLanguageChange(event) {
+		const { value } = event.target
+		log(value)
+	}
+
 	renderCheckboxForLang(language) {
 		// TODO check if selected
 		return (
 			<span key={language.id} className='mr2'>
 				<label htmlFor="">{language.attributes.name}</label>
-				<input type='checkbox' value={language.id} />
+				<input type='checkbox' value={language.id} onChange={this.onLanguageChange.bind(this)} />
 			</span>
 		)
 	}
 
 	renderLanguages() {
 		log(this.props.languages)
-		return _.map(this.props.languages, this.renderCheckboxForLang)
+		return _.map(this.props.languages, this.renderCheckboxForLang.bind(this))
 	}
 
 	render () {
 		const user = this.props.user
+		// log('user', user)
 		return (
 			<section className={`${classAdder()} p2`}>
 				<a className='btn btn-outline' onClick={this.onList.bind(this)} href="javascript://">List</a>&nbsp;
