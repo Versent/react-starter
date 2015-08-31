@@ -45,10 +45,10 @@ class AppComponent extends React.Component {
 	render() {
 		return (
 			<section className='container clearfix'>
-				<div className='col col-8'>
+				<div className='col col-6'>
 					{this.props.children}
 				</div>
-				<div className='col col-4'>
+				<div className='col col-6'>
 					<LanguagesList />
 				</div>
 			</section>

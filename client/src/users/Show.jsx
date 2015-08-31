@@ -1,9 +1,10 @@
-import React          from 'react';
-import Router         from 'react-router';
-import bows           from 'bows'
-import makeClassAdder from '../shared/services/makeClassAdder.js';
-import { connect }    from 'react-redux';
-import actions        from './actions'
+import React                 from 'react';
+import Router                from 'react-router';
+import bows                  from 'bows'
+import makeClassAdder        from '../shared/services/makeClassAdder.js';
+import { connect }           from 'react-redux';
+import actions               from './actions'
+import languagesUsersActions from '../languages_users/actions'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--Show'
@@ -20,6 +21,24 @@ class Comp extends React.Component {
 		return this.context.router
 	}
 
+	getUserId() {
+		return this.props.user.id
+	}
+
+	getLanguageUser(languageId) {
+		const userId = this.getUserId()
+		return _.find(this.props.languagesUsers, function (item) {
+			return item.attributes.user_id == userId && item.attributes.language_id == languageId
+		})
+	}
+
+	getLanguageChecked(languageId) {
+		log('languagesUsers', this.props.languagesUsers)
+		const languageUser = this.getLanguageUser(languageId)
+		// log(languageUser)
+		return !!languageUser
+	}
+
 	onList(event) {
 		this.getRouter().transitionTo('/users')
 	}
@@ -30,16 +49,46 @@ class Comp extends React.Component {
 	}
 
 	onLanguageChange(event) {
+		// log(event.target)
 		const { value } = event.target
-		log(value)
+		// log(value)
+		const userId  = this.getUserId()
+		// const checked = this.getLanguageChecked(value)
+		let languageUser = this.getLanguageUser(value)
+		// const languageUser = {
+		// 	language_id: value,
+		// 	user_id: userId,
+		// }
+		let action
+		if (languageUser) {
+			// uncheck
+			log('uncheck')
+
+			action = languagesUsersActions.delete(languageUser)
+		} else {
+			// check
+			log('check')
+			languageUser = {
+				language_id: value,
+				user_id: userId,
+			}
+			action = languagesUsersActions.create(languageUser)
+		}
+		this.getDispatch()(action)
 	}
 
 	renderCheckboxForLang(language) {
 		// TODO check if selected
+		const checked = this.getLanguageChecked(language.id)
+
 		return (
 			<span key={language.id} className='mr2'>
 				<label htmlFor="">{language.attributes.name}</label>
-				<input type='checkbox' value={language.id} onChange={this.onLanguageChange.bind(this)} />
+				<input
+					type='checkbox'
+					value={language.id}
+					checked={checked}
+					onChange={this.onLanguageChange.bind(this)} />
 			</span>
 		)
 	}
@@ -63,17 +112,17 @@ class Comp extends React.Component {
 	}
 }
 
-Comp.displayName = classAdder();
+Comp.displayName = classAdder()
 
 Comp.contextTypes = {
 	router: PT.object.isRequired
 };
 
 Comp.propTypes = {
-	dispatch: PT.func.isRequired,
-	languages: PT.array.isRequired,
-	languages_users: PT.array.isRequired,
-	user: PT.object.isRequired
+	dispatch:       PT.func.isRequired,
+	languages:      PT.array.isRequired,
+	languagesUsers: PT.array.isRequired,
+	user:           PT.object.isRequired,
 }
 
 export default Comp

@@ -3,6 +3,7 @@ import Router         from 'react-router';
 import makeClassAdder from '../shared/services/makeClassAdder.js';
 import { connect }    from 'react-redux';
 import actions        from './actions'
+import Icon           from 'react-fa'
 
 const PT              = React.PropTypes;
 const classAdder      = makeClassAdder('users--List');
@@ -43,10 +44,17 @@ class Comp extends React.Component {
 					<td>
 						{user.attributes.name}
 					</td>
+					<td></td>
 					<td>
-						<a className='btn regular blue' href="javascript://" onClick={this.onShow.bind(this, user)}>Show</a>
-						<a className='btn regular blue' href="javascript://" onClick={this.onEdit.bind(this, user)}>Edit</a>
-						<a className='btn regular blue' href="javascript://" onClick={this.onDelete.bind(this, user)}>Delete</a>
+						<a className='btn regular blue'
+							href="javascript://"
+							onClick={this.onShow.bind(this, user)}><Icon name='eye' /></a>
+						<a className='btn regular blue'
+							href="javascript://"
+							onClick={this.onEdit.bind(this, user)}><Icon name='pencil' /></a>
+						<a className='btn regular blue'
+							href="javascript://"
+							onClick={this.onDelete.bind(this, user)}><Icon name='trash' /></a>
 					</td>
 				</tr>
 			);
@@ -60,6 +68,7 @@ class Comp extends React.Component {
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>Langs</th>
 							<th></th>
 						</tr>
 					</thead>

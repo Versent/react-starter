@@ -17,12 +17,21 @@ class Comp extends React.Component {
 
 	renderItems() {
 		return _.map(this.props.languages, (language) => {
-			return <li key={language.id}>{language.attributes.name} {this.renderUsageFor(language.id)}</li>
+			return (
+				<tr key={language.id}>
+					<td>
+						{language.attributes.name}
+					</td>
+					<td>
+						{this.renderUsageFor(language.id)}
+					</td>
+				</tr>
+			)
 		})
 	}
 
 	renderUsageFor(id) {
-		log(id)
+		// log(id)
 		// languagesUsers
 		return _.sum(this.props.languagesUsers, function(lu) {
 			// log(lu.attributes.language_id == id)
@@ -32,12 +41,20 @@ class Comp extends React.Component {
 
 	render () {
 		return (
-			<section className={classAdder()}>
+			<section className={`${classAdder()} p1`}>
 				<h2>Languages</h2>
 				<New {...this.props} />
-				<ul>
-					{this.renderItems()}
-				</ul>
+				<table className='table-light'>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Users</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.renderItems()}
+					</tbody>
+				</table>
 			</section>
 		);
 	}

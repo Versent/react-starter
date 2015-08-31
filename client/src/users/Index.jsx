@@ -27,8 +27,8 @@ class Comp extends React.Component {
 
 	render () {
 		return (
-			<section className={`${classAdder()} p2`}>
-				<h1>Users</h1>
+			<section className={`${classAdder()} p1`}>
+				<h2>Users</h2>
 				<New {...this.props} />
 				<List {...this.props} />
 			</section>

@@ -30,12 +30,20 @@ defmodule App.Router do
   # Other scopes may use custom stacks.
   scope "/api", App.Api do
     pipe_through :api
+
+    resources "/languages", LanguagesController
+    options   "/languages", LanguagesController, :options
+    options   "/languages/:id", LanguagesController, :options
+
+    resources "/languages_users", LanguagesUsersController
+    options   "/languages_users", LanguagesUsersController, :options
+    options   "/languages_users/:id", LanguagesUsersController, :options
+
     resources "/users", UsersController
     options   "/users", UsersController, :options
     options   "/users/:id", UsersController, :options
     
-    resources "/languages", LanguagesController
-    options "/languages", LanguagesController, :options
-    options   "/languages/:id", LanguagesController, :options
+    
+
   end
 end

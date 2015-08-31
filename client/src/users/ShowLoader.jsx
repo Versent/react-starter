@@ -1,12 +1,13 @@
-import React          from 'react';
-import Router         from 'react-router';
-import bows           from 'bows'
-import makeClassAdder from '../shared/services/makeClassAdder.js';
-import { connect }    from 'react-redux';
-import actions        from './actions'
-import Busy           from '../shared/Busy.jsx'
-import Show           from './Show.jsx'
-import createLoader   from 'redux-loader'
+import React                  from 'react';
+import Router                 from 'react-router';
+import bows                   from 'bows'
+import makeClassAdder         from '../shared/services/makeClassAdder.js';
+import { connect }            from 'react-redux';
+import actions                from './actions'
+import languagesUsersActions  from '../languages_users/actions'
+import Busy                   from '../shared/Busy.jsx'
+import Show                   from './Show.jsx'
+import createLoader           from 'redux-loader'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--ShowLoader'
@@ -27,18 +28,23 @@ const Loader = createLoader({
 		// 	}
 		// },
 
-		// languages_users: {
-		// 	find: function(options) {
-		// 		return options.props.languages_users
-		// 	},
-		// 	load: function(options) {
-
-		// 	}
-		// },
+		languagesUsers: function(options) {
+			const id = '/languages_users'
+			return {
+				id,
+				find: function() {
+					return options.props.languages_users
+				},
+				load: function(options) {
+					const action = languagesUsersActions.fetch()
+					return options.dispatch(action);
+				}
+			}
+		},
 
 		user: function(options) {
 			const userId = options.context.router.state.params.id
-			const id = `users/${userId}`
+			const id = `/users/${userId}`
 			// log('id', id)
 
 			return {

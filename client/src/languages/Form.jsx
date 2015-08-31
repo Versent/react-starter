@@ -1,6 +1,7 @@
 import React          from 'react';
 import actions        from './actions'
 import bows           from 'bows'
+import Icon           from 'react-fa'
 
 const PT              = React.PropTypes;
 const log             = bows('languages--Form')
@@ -50,8 +51,12 @@ class Comp extends React.Component {
 			<section>
 				<form>
 					<label for="name">Name</label>&nbsp;
-					<input type='text' value={this.state.name} onChange={this.onChange.bind(this)} className='field' />&nbsp;
-					<button type='submit' onClick={this.onSave.bind(this)} className='btn btn-outline'>Save</button>
+					<input
+						type='text'
+						value={this.state.name}
+						onChange={this.onChange.bind(this)}
+						className='field col-5' />&nbsp;
+					<button type='submit' onClick={this.onSave.bind(this)} className='btn btn-outline'><Icon name='save' /></button>
 				</form>
 			</section>
 		);
