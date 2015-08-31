@@ -18,7 +18,7 @@ class Comp extends React.Component {
 
 	getCleanState(props) {
 		const user = props.user
-		log(user)
+		// log(user)
 		return {
 			name: user.attributes.name
 		}
@@ -40,7 +40,7 @@ class Comp extends React.Component {
 
 		// user = user.merge({attributes})
 		attributes = attributes.merge(this.state).merge({id: user.id})
-		log(attributes)
+		// log(attributes)
 
 		this.props.onCommit(attributes)
 	}

@@ -13,6 +13,7 @@ import { Redirect, Router, Route }       from 'react-router';
 import HashHistory                       from 'react-router/lib/HashHistory';
 import reduxCrud                         from 'redux-crud';
 import addMiddleware                     from './shared/services/addMiddleware';
+import requestsReducer                   from './shared/requests/reducer'
 // import Index          from './prospects/Index.jsx'
 // import FlashesLoader  from './shared/FlashesLoader.jsx'
 
@@ -34,7 +35,8 @@ const createStoreWithMiddleware = applyMiddleware(
 const allReducers = combineReducers({
 	languages:       reduxCrud.reducersFor('languages'),
 	languages_users: reduxCrud.reducersFor('languages_users'),
-	users:           reduxCrud.reducersFor('users')
+	requests:        requestsReducer,
+	users:           reduxCrud.reducersFor('users'),
 });
 
 const store = createStoreWithMiddleware(allReducers);

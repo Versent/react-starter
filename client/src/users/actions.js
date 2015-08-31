@@ -2,6 +2,7 @@ import _            from 'lodash';
 import reduxCrud    from 'redux-crud';
 import axios        from 'axios';
 import getApi       from '../shared/services/getApi'
+import request      from '../shared/requests/request'
 import bows         from 'bows'
 
 const baseActionCreators = reduxCrud.actionCreatorsFor('users');
@@ -11,15 +12,22 @@ const log  = bows('users--actions')
 let actionCreators = {
 
 	fetch() {
-		return function(dispatch) {
+		return function(dispatch, getState) {
 			const action = baseActionCreators.fetchStart();
 			dispatch(action);
 
 			// send the request
-			const url = host + '/users';
-			const promise = axios({
-				url: url
-			});
+			const id  = '/users'
+			const url = host + id
+			const ajax = {
+				url: url,
+			}
+			const options = {
+				dispatch,
+				getState,
+			}
+
+			const promise = request(id, ajax, options)
 
 			promise.then(function(response) {
 					// dispatch the success action

@@ -17,30 +17,38 @@ const Loader = createLoader({
 	component: Component,
 	busy: Busy,
 	resources: {
-		languages: {
-			find: function(options) {
-				const langs = options.props.languages
-				// we need a way of telling if request has been done
-				if (langs.length) {
-					return options.props.languages  //_.find(options.props.languages, {id: userId})
+
+		languages: function(options) {
+			const id = '/languages'
+			return {
+				id,
+				find(props) {
+					const requests  = options.props.requests
+					log(requests)
+					const languages = options.props.languages
+					if (requests[id]) {
+						return languages
+					}
+				},
+				load() {
+					// const userId = options.context.router.state.params.id
+					const action = actions.fetch()
+					return options.dispatch(action);
 				}
-			},
-			load: function(options) {
-				// const userId = options.context.router.state.params.id
-				const action = actions.fetch()
-				return options.dispatch(action);
 			}
 		},
 
-		languagesUsers: {
-			find: function(options) {
-				return options.props.languages_users
-			},
-
-			load: function(options) {
-
+		languagesUsers: function(options) {
+			const id = '/languages_users'
+			return {
+				id,
+				find(props) {
+					return props.languages_users
+				},
+				load() {}
 			}
 		}
+
 	}
 })
 

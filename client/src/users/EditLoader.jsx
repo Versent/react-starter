@@ -17,15 +17,19 @@ const Loader = createLoader({
 	component: Edit,
 	busy: Busy,
 	resources: {
-		user: {
-			find: function(options) {
-				const userId = options.context.router.state.params.id
-				return _.find(options.props.users, {id: userId})
-			},
-			load: function(options) {
-				const userId = options.context.router.state.params.id
-				const action = actions.fetchOne(userId)
-				return options.dispatch(action);
+		user: function(options) {
+			const userId = options.context.router.state.params.id
+			const id = `users/${userId}`
+
+			return {
+				id: id,
+				find: function(props) {
+					return _.find(props.users, {id: userId})
+				},
+				load: function() {
+					const action = actions.fetchOne(userId)
+					return options.dispatch(action);
+				}
 			}
 		}
 	}

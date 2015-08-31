@@ -1,10 +1,14 @@
 {
+  "disallowMixedSpacesAndTabs": "smart",
+  "disallowSemicolons": true,
+  "disallowTrailingComma": false,
   "esprima": "esprima-fb",
   "fileExtensions": [".js", ".jsx"],
   "preset": "airbnb",
-  "disallowMixedSpacesAndTabs": "smart",
-  "validateIndentation": "\t",
-  "requirePaddingNewLinesBeforeLineComments": null,
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
   "requirePaddingNewLinesAfterBlocks": null,
-  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
+  "requirePaddingNewLinesBeforeLineComments": null,
+  "requireSemicolons": false,
+  "requireTrailingComma": true,
+  "validateIndentation": "\t"
 }
