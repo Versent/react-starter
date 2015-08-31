@@ -46,7 +46,7 @@
     "react-widgets": "~2.7.4",
     "redux": "^1.0.1",
     "redux-crud": "^0.3.5",
-    "redux-devtools": "^1.1.1",
+    "redux-devtools": "^1.1.2",
     "redux-loader": "^0.1.0",
     "redux-logger": "^1.0.5",
     "redux-thunk": "^0.1.0",
