@@ -10,11 +10,11 @@ function render(props) {
     type: 'text',
   }
   props = props || {}
-  props = _.defaults(props, defaults);
+  props = _.defaults(props, defaults)
   return testTree(<Component {...props} />, {
     context: {
-      router: {}
-    }
+      router: {},
+    },
   })
 }
 
@@ -22,8 +22,8 @@ function makeUser() {
   return {
     id: 1,
     attributes: {
-      name: 'Sally'
-    }
+      name: 'Sally',
+    },
   }
 }
 
@@ -32,15 +32,15 @@ function makeLanguage() {
     {
       id: 1,
       attributes: {
-        name: 'English'
-      }
+        name: 'English',
+      },
     },
     {
       id: 2,
       attributes: {
-        name: 'Spanish'
-      }
-    }
+        name: 'Spanish',
+      },
+    },
   ]
 }
 
@@ -51,9 +51,9 @@ function makeProps() {
     {
       attributes: {
         user_id: user.id,
-        language_id: 2
-      }
-    }
+        language_id: 2,
+      },
+    },
   ]
   return {
     dispatch:       sinon.stub(),
@@ -83,8 +83,8 @@ test(subject + 'updates', function(t) {
 
   const change = {
     target: {
-      checked: false
-    }
+      checked: false,
+    },
   }
   comp.checkbox1.simulate.change(change)
   // const expected = {

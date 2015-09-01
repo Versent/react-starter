@@ -9,6 +9,5 @@
   "requirePaddingNewLinesAfterBlocks": null,
   "requirePaddingNewLinesBeforeLineComments": null,
   "requireSemicolons": false,
-  "requireTrailingComma": true,
-  "validateIndentation": "\t"
+  "requireTrailingComma": {"ignoreSingleLine": true}
 }

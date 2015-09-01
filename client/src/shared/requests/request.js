@@ -14,8 +14,6 @@ function request(config, options) {
   if (options.success  == null)  throw new Error('Expected options.success in ' + id)
   if (options.error    == null)  throw new Error('Expected options.error in ' + id)
 
-  // console.log('request', options.id)
-  
   var dispatch = options.dispatch
   var state    = options.getState()
   var requests = state.requests

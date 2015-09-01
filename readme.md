@@ -52,20 +52,27 @@ Open http://localhost:4002/
 Linting
 -------
 
-TODO
-
 ```
-make lint
+gulp lint
 ```
 
 Unit tests
 ----------
 
-TODO
+```
+npm test
+```
+
+Watch mode:
 
 ```
-make test-unit
+gulp test-watch
 ```
+
+
+Running single test:
+
+
 
 ## TODO:
 

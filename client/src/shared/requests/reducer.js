@@ -9,8 +9,6 @@ function changeStatus(state, action, status) {
 
   var request = state[id] || SI({})
 
-  // console.log('current', action.id, request)
-  
   request = request.merge({status:  status})
   const newState = state.without(id).merge({[id]: request})
   // console.log('newState', newState)
@@ -22,13 +20,13 @@ function reducer(state, action) {
 
   // console.log(action.type, state)
 
-  switch(action.type) {
-    case actionTypes.REQUEST_START:
-      return changeStatus(state, action, actionTypes.REQUEST_START)
-    case actionTypes.REQUEST_DONE:
-      return changeStatus(state, action, actionTypes.REQUEST_DONE)
-    default:
-      return state
+  switch (action.type) {
+  case actionTypes.REQUEST_START:
+    return changeStatus(state, action, actionTypes.REQUEST_START)
+  case actionTypes.REQUEST_DONE:
+    return changeStatus(state, action, actionTypes.REQUEST_DONE)
+  default:
+    return state
   }
 }
 

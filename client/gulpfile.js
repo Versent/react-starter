@@ -2,29 +2,22 @@
 
 var fs       = require('fs');
 var gulp     = require('gulp');
-var mocha    = require('gulp-mocha');
-var shell    = require('gulp-shell')
+var jscs     = require('gulp-jscs');
 var path     = require('path');
+var shell    = require('gulp-shell')
 var watch    = require('gulp-watch');
-var batch    = require('gulp-batch');
-var plumber  = require('gulp-plumber');
 
-require('babel/register');
-require('coffee-script/register');
+// require('babel/register');
 
-var feTestCmd = 'make test-unit';
-var feTestArgs = {
-	ignoreErrors: true
-}
+gulp.task('test', shell.task([
+  'npm test',
+]));
 
-gulp.task('test', function(cb) {
-	gulp.src('')
-		.pipe(shell(feTestCmd, feTestArgs));
+gulp.task('test-watch', ['test'], function() {
+  gulp.watch(['src/**/*.js'], ['test']);
 });
 
-gulp.task('test-watch', function() {
-	gulp
-		.src('')
-		.pipe(watch('src/**'))
-		.pipe(shell(feTestCmd, feTestArgs));
+gulp.task('lint', function () {
+  return gulp.src(['src/**/*.js'])
+    .pipe(jscs({configPath: './.jscs.json'}));
 });
