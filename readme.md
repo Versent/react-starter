@@ -12,6 +12,7 @@ Starter Application for React SPAs, this kit includes:
 - [Redux devtools](https://github.com/gaearon/redux-devtools)
 - [Redux-crud](https://github.com/Versent/redux-crud)
 - [Redux](https://github.com/rackt/redux)
+- [Robo](https://github.com/tj/robo) for running tasks
 - [Seamless-immmutable](https://github.com/rtfeldman/seamless-immutable)
 - [Tape](https://github.com/substack/tape) for JS unit tests
 - [Webpack dev server](http://webpack.github.io/docs/webpack-dev-server.html)
@@ -57,15 +58,13 @@ forego start
 Open http://localhost:4002/
 
 
-Linting
--------
+## Front end linting (in ./client)
 
 ```
 gulp lint
 ```
 
-Unit tests
-----------
+## Front end unit tests (in ./client)
 
 ```
 npm test
@@ -77,16 +76,16 @@ Watch mode:
 gulp test-watch
 ```
 
-
 Running single test:
 
-
+```
+robo test ./src/users/Show.test.js
+```
 
 ## TODO:
 
 - Dev using Docker?
 - Deployment with Docker
-- JS Unit tests
-- Flow type checker
+- Flow type checker (Doesn't work with ES6)
 
 
