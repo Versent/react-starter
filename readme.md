@@ -47,6 +47,13 @@ In ./client
 npm start
 ```
 
+Or using forego in root
+
+```
+brew install forego
+forego start
+```
+
 Open http://localhost:4002/
 
 

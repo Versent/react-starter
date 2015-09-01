@@ -97,7 +97,7 @@ class Comp extends React.Component {
     const user = this.props.user
     return (
       <section className={`${classAdder()} p2`}>
-        <a className='btn btn-outline' onClick={this.onList.bind(this)} href='javascript://'>List</a>&nbsp
+        <a className='btn btn-outline' onClick={this.onList.bind(this)} href='javascript://'>List</a>&nbsp;
         <a className='btn btn-outline' onClick={this.onEdit.bind(this)} href='javascript://'>Edit</a>
         <h1 ref='label'>{user.attributes.name}</h1>
         {this.renderLanguages()}

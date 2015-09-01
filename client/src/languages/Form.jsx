@@ -50,12 +50,12 @@ class Comp extends React.Component {
     return (
       <section>
         <form>
-          <label for='name'>Name</label>&nbsp
+          <label for='name'>Name</label>&nbsp;
           <input
             type='text'
             value={this.state.name}
             onChange={this.onChange.bind(this)}
-            className='field col-5' />&nbsp
+            className='field col-5' />&nbsp;
           <button type='submit' onClick={this.onSave.bind(this)} className='btn btn-outline'><Icon name='save' /></button>
         </form>
       </section>
