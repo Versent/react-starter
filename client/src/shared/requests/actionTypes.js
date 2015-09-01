@@ -1,3 +1,4 @@
-export default {
-	REQUEST_DONE: 'REQUEST_DONE'
+module.exports = {
+  REQUEST_DONE:  'REQUEST_DONE',
+  REQUEST_START: 'REQUEST_START',
 }

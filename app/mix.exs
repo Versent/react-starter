@@ -17,8 +17,15 @@ defmodule App.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {App, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+     applications: [
+      :phoenix,
+      :phoenix_html,
+      :cowboy,
+      :logger,
+      :phoenix_ecto,
+      :sqlite_ecto
+      ]
+    ]
   end
 
   # Specifies which paths to compile per environment
@@ -38,7 +45,7 @@ defmodule App.Mixfile do
       {:plug_cors, "~> 0.7.3"},
       {:phoenix_html, "~> 2.1"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:postgrex, ">= 0.0.0"}
+      {:sqlite_ecto, "~> 1.0.0"}
     ]
   end
 end

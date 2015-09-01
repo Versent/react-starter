@@ -4,6 +4,6 @@ defmodule App.Api.LanguagesUsersView do
 
   def type, do: "language_user"
 
-	attributes [:language_id, :user_id]
+  attributes [:language_id, :user_id]
 
 end

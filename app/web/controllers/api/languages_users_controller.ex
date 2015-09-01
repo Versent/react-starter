@@ -4,13 +4,13 @@ defmodule App.Api.LanguagesUsersController do
   import Logger
 
   def index(conn, _params) do
-    languages = Language |> Repo.all |> Repo.preload [:users]
+    languages = LanguageUser |> Repo.all #|> Repo.preload [:users]
     render conn, model: languages
   end
 
   def show(conn, params) do
     # Logger.debug params |> inspect
-    language = Language |> Repo.get(params["id"]) |> Repo.preload [:users]
+    language = LanguageUser |> Repo.get(params["id"]) |> Repo.preload [:users]
     render conn, model: language
   end
 

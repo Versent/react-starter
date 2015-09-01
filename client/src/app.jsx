@@ -32,7 +32,7 @@ const history       = new HashHistory();
 
 const finalCreateStore = compose(
   // Provides support for DevTools:
-  devTools(),
+  // devTools(),
   // Lets you write ?debug_session=<name> in address bar to persist debug sessions
   createStore
 );
@@ -86,15 +86,17 @@ AppRouter.propTypes = {
 	history: React.PropTypes.object.isRequired
 };
 
+		// <DebugPanel top right bottom>
+		// 	<DevTools store={store} monitor={LogMonitor} />
+		// </DebugPanel>
+
 const mountNode = document.getElementById('app');
 React.render(
 	<div>
 		<Provider store={store}>
 			{() => <AppRouter history={history} /> }
 		</Provider>
-		<DebugPanel top right bottom>
-			<DevTools store={store} monitor={LogMonitor} />
-		</DebugPanel>
+
 	</div>,
 	mountNode
 );
