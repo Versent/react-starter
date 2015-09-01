@@ -31,16 +31,15 @@ const log           = bows('app')
 const history       = new HashHistory()
 
 const finalCreateStore = compose(
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware
+  ),
   // Provides support for DevTools:
   // devTools(),
   // Lets you write ?debug_session=<name> in address bar to persist debug sessions
   createStore
 )
-
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware, // lets us dispatch() functions
-  loggerMiddleware // neat middleware that logs actions
-)(finalCreateStore)
 
 const allReducers = combineReducers({
   languages:       reduxCrud.reducersFor('languages'),
@@ -49,7 +48,7 @@ const allReducers = combineReducers({
   users:           reduxCrud.reducersFor('users'),
 })
 
-const store = createStoreWithMiddleware(allReducers)
+const store = finalCreateStore(allReducers)
 
 class AppComponent extends React.Component {
   render() {
