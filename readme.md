@@ -5,6 +5,7 @@ Starter Application for React SPAs, this kit includes:
 - [Babel](https://babeljs.io/)
 - [BASSCSS](http://www.basscss.com/) for CSS
 - [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
+- [JSCS](http://jscs.info/) For JS linting
 - [Phoenix](http://www.phoenixframework.org/) as backend
 - [React Router](https://github.com/rackt/react-router)
 - [React](http://facebook.github.io/react/)
@@ -12,9 +13,9 @@ Starter Application for React SPAs, this kit includes:
 - [Redux-crud](https://github.com/Versent/redux-crud)
 - [Redux](https://github.com/rackt/redux)
 - [Seamless-immmutable](https://github.com/rtfeldman/seamless-immutable)
+- [Tape](https://github.com/substack/tape) for JS unit tests
+- [Webpack dev server](http://webpack.github.io/docs/webpack-dev-server.html)
 - [Webpack](http://webpack.github.io/)
-- Webpack dev server
-- Unit test
 
 ## Set up
 

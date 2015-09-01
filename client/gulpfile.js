@@ -18,6 +18,6 @@ gulp.task('test-watch', ['test'], function() {
 });
 
 gulp.task('lint', function () {
-  return gulp.src(['src/**/*.js'])
-    .pipe(jscs({configPath: './.jscs.json'}));
+  return gulp.src(['src/**/*.js', 'src/**/*.jsx'])
+    .pipe(jscs());
 });

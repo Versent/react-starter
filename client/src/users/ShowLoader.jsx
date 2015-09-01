@@ -1,8 +1,8 @@
-import React                  from 'react';
-import Router                 from 'react-router';
+import React                  from 'react'
+import Router                 from 'react-router'
 import bows                   from 'bows'
-import makeClassAdder         from '../shared/services/makeClassAdder.js';
-import { connect }            from 'react-redux';
+import makeClassAdder         from '../shared/services/makeClassAdder.js'
+import { connect }            from 'react-redux'
 import actions                from './actions'
 import languagesUsersActions  from '../languages_users/actions'
 import Busy                   from '../shared/Busy.jsx'
@@ -12,7 +12,7 @@ import isDone                 from '../shared/requests/isDone'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--ShowLoader'
-const classAdder      = makeClassAdder(baseClass);
+const classAdder      = makeClassAdder(baseClass)
 const log             = bows(baseClass)
 
 const Loader = createLoader({
@@ -31,6 +31,7 @@ const Loader = createLoader({
 
     languagesUsers: function(options) {
       const id = '/languages_users'
+
       return {
         id,
         find: function() {
@@ -41,8 +42,8 @@ const Loader = createLoader({
         },
         load: function() {
           const action = languagesUsersActions.fetch()
-          return options.dispatch(action);
-        }
+          return options.dispatch(action)
+        },
       }
     },
 
@@ -60,16 +61,16 @@ const Loader = createLoader({
         },
         load: function() {
           const action = actions.fetchOne(userId)
-          return options.dispatch(action);
-        }
+          return options.dispatch(action)
+        },
       }
-    }
 
-  }
+    },
+  },
 })
 
 Loader.contextTypes = {
-  router: PT.object.isRequired
-};
+  router: PT.object.isRequired,
+}
 
-export default connect(state => state)(Loader);
+export default connect(state => state)(Loader)

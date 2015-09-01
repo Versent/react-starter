@@ -1,32 +1,32 @@
 /* @flow */
 
-import React          from 'react';
-import Router         from 'react-router';
-import makeClassAdder from '../shared/services/makeClassAdder.js';
-import Busy           from '../shared/Busy.jsx';
+import React          from 'react'
+import Router         from 'react-router'
+import makeClassAdder from '../shared/services/makeClassAdder.js'
+import Busy           from '../shared/Busy.jsx'
 
-const PT              = React.PropTypes;
-const classAdder      = makeClassAdder('shared--Template');
+const PT              = React.PropTypes
+const classAdder      = makeClassAdder('shared--Template')
 
 class Comp extends React.Component {
 
-	componentDidMount() {}
+  componentDidMount() {}
 
-	render () {
-		return (
-			<section className={classAdder()}>Hello</section>
-		);
-	}
+  render() {
+    return (
+      <section className={classAdder()}>Hello</section>
+    )
+  }
 }
 
-Comp.displayName = classAdder();
+Comp.displayName = classAdder()
 
 Comp.contextTypes = {
-	router: PT.object
-};
-
-Comp.propTypes = {
-	something: PT.array.isRequired
+  router: PT.object,
 }
 
-export default Comp;
+Comp.propTypes = {
+  something: PT.array.isRequired,
+}
+
+export default Comp

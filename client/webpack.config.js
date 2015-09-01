@@ -41,6 +41,11 @@ module.exports = {
     publicPath:  publicPath
   },
   module: {
+    preLoaders: [{
+      test:    /\.js|\.jsx$/,
+      exclude: /node_modules/,
+      loader: 'jscs-loader'
+    }],
     loaders: [
       {
         test: /\.less$/,

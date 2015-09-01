@@ -39,6 +39,8 @@
     "gulp-watch": "^4.3.5",
     "invariant": "^2.1.0",
     "joi": "~6.5.0",
+    "jscs": "^2.1.1",
+    "jscs-loader": "^0.2.0",
     "jsdom": "^6.3.0",
     "json-loader": "~0.5.2",
     "less": "~2.5.1",

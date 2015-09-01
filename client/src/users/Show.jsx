@@ -1,15 +1,15 @@
 import _                     from 'lodash'
-import React                 from 'react';
-import Router                from 'react-router';
+import React                 from 'react'
+import Router                from 'react-router'
 import bows                  from 'bows'
-import makeClassAdder        from '../shared/services/makeClassAdder.js';
-import { connect }           from 'react-redux';
+import makeClassAdder        from '../shared/services/makeClassAdder.js'
+import { connect }           from 'react-redux'
 import actions               from './actions'
 import languagesUsersActions from '../languages_users/actions'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--Show'
-const classAdder      = makeClassAdder(baseClass);
+const classAdder      = makeClassAdder(baseClass)
 const log             = bows(baseClass)
 
 class Comp extends React.Component {
@@ -28,7 +28,7 @@ class Comp extends React.Component {
 
   getLanguageUser(languageId) {
     const userId = this.getUserId()
-    return _.find(this.props.languagesUsers, function (item) {
+    return _.find(this.props.languagesUsers, function(item) {
       return item.attributes.user_id == userId && item.attributes.language_id == languageId
     })
   }
@@ -73,7 +73,7 @@ class Comp extends React.Component {
 
     return (
       <span key={language.id} className='mr2'>
-        <label htmlFor="">{language.attributes.name}</label>
+        <label htmlFor=''>{language.attributes.name}</label>
         <input
           ref={ref}
           type='checkbox'
@@ -93,24 +93,24 @@ class Comp extends React.Component {
     )
   }
 
-  render () {
+  render() {
     const user = this.props.user
     return (
       <section className={`${classAdder()} p2`}>
-        <a className='btn btn-outline' onClick={this.onList.bind(this)} href="javascript://">List</a>&nbsp;
-        <a className='btn btn-outline' onClick={this.onEdit.bind(this)} href="javascript://">Edit</a>
+        <a className='btn btn-outline' onClick={this.onList.bind(this)} href='javascript://'>List</a>&nbsp
+        <a className='btn btn-outline' onClick={this.onEdit.bind(this)} href='javascript://'>Edit</a>
         <h1 ref='label'>{user.attributes.name}</h1>
         {this.renderLanguages()}
       </section>
-    );
+    )
   }
 }
 
 Comp.displayName = classAdder()
 
 Comp.contextTypes = {
-  router: PT.object.isRequired
-};
+  router: PT.object.isRequired,
+}
 
 Comp.propTypes = {
   dispatch:       PT.func.isRequired,
