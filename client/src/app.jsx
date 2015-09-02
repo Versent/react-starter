@@ -34,12 +34,11 @@ const finalCreateStore = compose(
   applyMiddleware(
     thunkMiddleware,
     loggerMiddleware
-  ),
+  )
   // Provides support for DevTools:
   // devTools(),
   // Lets you write ?debug_session=<name> in address bar to persist debug sessions
-  createStore
-)
+)(createStore)
 
 const allReducers = combineReducers({
   languages:       reduxCrud.reducersFor('languages'),
@@ -95,7 +94,6 @@ React.render(
     <Provider store={store}>
       {() => <AppRouter history={history} /> }
     </Provider>
-
   </div>,
   mountNode
 )
