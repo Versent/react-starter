@@ -34,9 +34,9 @@ const finalCreateStore = compose(
   applyMiddleware(
     thunkMiddleware,
     loggerMiddleware
-  ),
+  )
   // Provides support for DevTools:
-  devTools(),
+  // devTools(),
   // Lets you write ?debug_session=<name> in address bar to persist debug sessions
 )(createStore)
 
