@@ -1,24 +1,27 @@
-var webpack          = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config           = require('./webpack.config');
+var path = require('path')
+var express = require('express')
+var webpack = require('webpack')
+var config = require('./webpack.config')
 
-new WebpackDevServer(webpack(config), {
-	publicPath:         config.output.publicPath,
-	contentBase:        './public',
-	hot:                true,
-	// inline:             true,
-	// quiet:              false,
-	headers: {
-		'Access-Control-Allow-Origin': '*'
-	},
-	historyApiFallback: true,
-	stats: {
-		colors: true
-	}
-}).listen(4002, 'localhost', function(err) {
-	if (err) {
-		console.log(err);
-	}
+var app = express()
+var compiler = webpack(config)
 
-	console.log('Listening at localhost:4002');
-});
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath,
+}))
+
+app.use(require('webpack-hot-middleware')(compiler))
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public/index.html'))
+})
+
+app.listen(4002, 'localhost', function(err) {
+  if (err) {
+    console.log(err)
+    return
+  }
+
+  console.log('Listening at http://localhost:4002')
+})
