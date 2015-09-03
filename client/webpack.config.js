@@ -4,9 +4,7 @@ var webpack = require('webpack')
 // https://github.com/webpack/extract-text-webpack-plugin
 // Used for extracting CSS into its own file
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-var webpackDevServerHost = 'webpack-dev-server/client?http://0.0.0.0:4002' // WebpackDevServer host and port
-var WebpackDevServerOnlyDev = 'webpack/hot/only-dev-server'
+var webpackHotMiddlewareClient = 'webpack-hot-middleware/client'
 
 /*
 publicPath is used for finding the bundles during dev
@@ -28,10 +26,10 @@ var publicPath = '/bundles/'
 
 module.exports = {
   context: __dirname,
+  devtool: 'eval',
   entry: {
     app:           [
-      webpackDevServerHost,
-      WebpackDevServerOnlyDev,
+      webpackHotMiddlewareClient,
       './src/app.jsx',
     ],
   },
@@ -58,7 +56,7 @@ module.exports = {
       {
         test: /\.js|\.jsx/,
         include: path.join(__dirname, 'src'),
-        loaders: ['react-hot', 'babel?stage=1'],
+        loaders: ['babel'],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -72,6 +70,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('bundle.css'),
   ],
   node: { // mocks for Joi validation
