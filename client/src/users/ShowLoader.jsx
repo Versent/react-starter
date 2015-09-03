@@ -7,27 +7,17 @@ import actions                from './actions'
 import languagesUsersActions  from '../languages_users/actions'
 import Busy                   from '../shared/Busy.jsx'
 import Show                   from './Show.jsx'
-import createLoader           from 'redux-loader'
-import isDone                 from '../shared/requests/isDone'
+import reduxLoader            from 'redux-loader'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--ShowLoader'
 const classAdder      = makeClassAdder(baseClass)
 const log             = bows(baseClass)
 
-const Loader = createLoader({
+const Loader = reduxLoader.create({
   component: Show,
   busy: Busy,
   resources: {
-
-    // languages: {
-    //  find: function(options) {
-    //    return options.props.languages
-    //  },
-    //  load: function(options) {
-
-    //  }
-    // },
 
     languagesUsers: function(options) {
       const id = '/languages_users'
@@ -35,10 +25,7 @@ const Loader = createLoader({
       return {
         id,
         find: function() {
-          const done = isDone(options.props.requests, id)
-          if (done) {
-            return options.props.languages_users
-          }
+          return options.props.languages_users
         },
         load: function() {
           const action = languagesUsersActions.fetch()

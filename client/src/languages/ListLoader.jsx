@@ -6,8 +6,7 @@ import { connect }            from 'react-redux'
 import actions                from './actions'
 import Busy                   from '../shared/Busy.jsx'
 import Component              from './List.jsx'
-import createLoader           from 'redux-loader'
-import isDone                 from '../shared/requests/isDone'
+import reduxLoader            from 'redux-loader'
 import languagesUsersActions  from '../languages_users/actions'
 
 const PT              = React.PropTypes
@@ -15,7 +14,7 @@ const baseClass       = 'languages--ListLoader'
 const classAdder      = makeClassAdder(baseClass)
 const log             = bows(baseClass)
 
-const Loader = createLoader({
+const Loader = reduxLoader.create({
   component: Component,
   busy: Busy,
   resources: {
@@ -26,8 +25,7 @@ const Loader = createLoader({
       return {
         id,
         find() {
-          const done = isDone(options.props.requests, id)
-          if (done) return options.props.languages
+          return options.props.languages
         },
         load() {
           // const userId = options.context.router.state.params.id
@@ -44,8 +42,7 @@ const Loader = createLoader({
       return {
         id,
         find() {
-          const done = isDone(options.props.requests, id)
-          if (done) return options.props.languages_users
+          return options.props.languages_users
         },
         load() {
           const action = languagesUsersActions.fetch()

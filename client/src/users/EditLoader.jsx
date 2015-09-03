@@ -6,14 +6,14 @@ import { connect }    from 'react-redux'
 import actions        from './actions'
 import Busy           from '../shared/Busy.jsx'
 import Edit           from './Edit.jsx'
-import createLoader   from 'redux-loader'
+import loader         from 'redux-loader'
 
 const PT              = React.PropTypes
 const baseClass       = 'users--EditLoader'
 const classAdder      = makeClassAdder(baseClass)
 const log             = bows(baseClass)
 
-const Loader = createLoader({
+const Loader = loader.create({
   component: Edit,
   busy: Busy,
   resources: {

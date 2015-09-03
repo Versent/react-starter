@@ -13,7 +13,20 @@ const baseClass       = 'languages--List'
 const classAdder      = makeClassAdder(baseClass)
 const log             = bows(baseClass)
 
+let renderCount = 0
+
 class Comp extends React.Component {
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   // log(nextProps)
+  //   // return this.props.languages.length !== nextProps.languages.length ||
+  //   //   this.props.languagesUsers.length !== nextProps.languagesUsers.length
+  //   // return true
+  //   // return this.props.languages != nextProps.languages ||
+  //   //   this.props.languagesUsers != nextProps.languagesUsers
+  //   // return false
+  //   // return true
+  // }
 
   renderItems() {
     return _.map(this.props.languages, (language) => {
@@ -40,6 +53,8 @@ class Comp extends React.Component {
   }
 
   render() {
+    // renderCount++
+    // log('render', renderCount)
     return (
       <section className={`${classAdder()} p1`}>
         <h2>Languages</h2>

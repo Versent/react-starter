@@ -1,4 +1,0 @@
-module.exports = {
-  REQUEST_DONE:  'REQUEST_DONE',
-  REQUEST_START: 'REQUEST_START',
-}

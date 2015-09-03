@@ -4,11 +4,22 @@ import makeClassAdder from '../shared/services/makeClassAdder.js'
 import { connect }    from 'react-redux'
 import actions        from './actions'
 import Icon           from 'react-fa'
+import bows           from 'bows'
 
 const PT              = React.PropTypes
-const classAdder      = makeClassAdder('users--List')
+const baseClass       = 'users--List'
+const classAdder      = makeClassAdder(baseClass)
+const log             = bows(baseClass)
+
+let renderCount = 0
 
 class Comp extends React.Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const ids1 = _.pluck(this.props.users, 'id')
+    const ids2 = _.pluck(nextProps.users, 'id')
+    return !_.isEqual(ids1, ids2)
+  }
 
   getDispatch() {
     return this.props.dispatch
@@ -62,6 +73,8 @@ class Comp extends React.Component {
   }
 
   render() {
+    renderCount++
+    log('render', renderCount)
     return (
       <section className={`${classAdder()}`}>
         <table className='table-light'>

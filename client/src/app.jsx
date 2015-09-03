@@ -13,10 +13,10 @@ import { Provider }                      from 'react-redux'
 import { Redirect, Router, Route }       from 'react-router'
 import { devTools, persistState }        from 'redux-devtools'
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react'
-import HashHistory                       from 'react-router/lib/HashHistory'
-import reduxCrud                         from 'redux-crud'
-import addMiddleware                     from './shared/services/addMiddleware'
-import requestsReducer                   from './shared/requests/reducer'
+import HashHistory                          from 'react-router/lib/HashHistory'
+import reduxCrud                            from 'redux-crud'
+import addMiddleware                        from './shared/services/addMiddleware'
+import reduxLoader                          from 'redux-loader'
 // import Index          from './prospects/Index.jsx'
 // import FlashesLoader  from './shared/FlashesLoader.jsx'
 
@@ -34,16 +34,16 @@ const finalCreateStore = compose(
   applyMiddleware(
     thunkMiddleware,
     loggerMiddleware
-  )
+  ),
   // Provides support for DevTools:
-  // devTools(),
+  devTools(),
   // Lets you write ?debug_session=<name> in address bar to persist debug sessions
 )(createStore)
 
 const allReducers = combineReducers({
   languages:       reduxCrud.reducersFor('languages'),
   languages_users: reduxCrud.reducersFor('languages_users'),
-  requests:        requestsReducer,
+  requests:        reduxLoader.reducer,
   users:           reduxCrud.reducersFor('users'),
 })
 
