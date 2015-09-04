@@ -22,7 +22,7 @@ class Comp extends React.Component {
     // return !_.isEqual(ids1, ids2)
   }
 
-  getDispatch() {
+  get dispatch() {
     return this.props.dispatch
   }
 
@@ -45,14 +45,12 @@ class Comp extends React.Component {
   onDelete(user, event) {
     event.preventDefault()
     const action = actions.delete(user)
-    const dispatch = this.getDispatch()
-    dispatch(action)
+    this.dispatch(action)
   }
 
   onRename() {
     const action = actions.renameAll()
-    const dispatch = this.getDispatch()
-    dispatch(action)
+    this.dispatch(action)
   }
 
   renderUsers() {
@@ -96,7 +94,9 @@ class Comp extends React.Component {
             {this.renderUsers()}
           </tbody>
         </table>
-        <button className='btn' onClick={this.onRename.bind(this)}>Rename all</button>
+        <button
+          className='btn'
+          onClick={this.onRename.bind(this)}>Rename all Users</button>
       </section>
     )
   }
