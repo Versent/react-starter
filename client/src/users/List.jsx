@@ -16,9 +16,10 @@ let renderCount = 0
 class Comp extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
-    const ids1 = _.pluck(this.props.users, 'id')
-    const ids2 = _.pluck(nextProps.users, 'id')
-    return !_.isEqual(ids1, ids2)
+    return true
+    // const ids1 = _.pluck(this.props.users, 'id')
+    // const ids2 = _.pluck(nextProps.users, 'id')
+    // return !_.isEqual(ids1, ids2)
   }
 
   getDispatch() {
@@ -44,6 +45,12 @@ class Comp extends React.Component {
   onDelete(user, event) {
     event.preventDefault()
     const action = actions.delete(user)
+    const dispatch = this.getDispatch()
+    dispatch(action)
+  }
+
+  onRename() {
+    const action = actions.renameAll()
     const dispatch = this.getDispatch()
     dispatch(action)
   }
@@ -89,6 +96,7 @@ class Comp extends React.Component {
             {this.renderUsers()}
           </tbody>
         </table>
+        <button className='btn' onClick={this.onRename.bind(this)}>Rename all</button>
       </section>
     )
   }

@@ -17,6 +17,7 @@ import HashHistory                          from 'react-router/lib/HashHistory'
 import reduxCrud                            from 'redux-crud'
 import addMiddleware                        from './shared/services/addMiddleware'
 import reduxLoader                          from 'redux-loader'
+import usersReducer                         from './users/reducer'
 // import Index          from './prospects/Index.jsx'
 // import FlashesLoader  from './shared/FlashesLoader.jsx'
 
@@ -44,7 +45,7 @@ const allReducers = combineReducers({
   languages:       reduxCrud.reducersFor('languages'),
   languages_users: reduxCrud.reducersFor('languages_users'),
   requests:        reduxLoader.reducer,
-  users:           reduxCrud.reducersFor('users'),
+  users:           usersReducer,
 })
 
 const store = finalCreateStore(allReducers)

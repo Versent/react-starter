@@ -4,6 +4,7 @@ import bows         from 'bows'
 import reduxCrud    from 'redux-crud'
 
 import getApi       from '../shared/services/getApi'
+import actionTypes  from './actionTypes'
 
 const baseActionCreators = reduxCrud.actionCreatorsFor('users')
 const host = getApi()
@@ -163,6 +164,12 @@ let actionCreators = {
         })
 
       return promise
+    }
+  },
+
+  renameAll() {
+    return {
+      type: actionTypes.renameAll,
     }
   },
 
