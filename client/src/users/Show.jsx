@@ -18,7 +18,7 @@ class Comp extends React.Component {
     return this.props.dispatch
   }
 
-  getRouter() {
+  get router() {
     return this.context.router
   }
 
@@ -41,12 +41,12 @@ class Comp extends React.Component {
   }
 
   onList(event) {
-    this.getRouter().transitionTo('/users')
+    this.router.transitionTo('/users')
   }
 
   onEdit(event) {
     const user = this.props.user
-    this.getRouter().transitionTo(`/users/${user.id}/edit`)
+    this.router.transitionTo(`/users/${user.id}/edit`)
   }
 
   onLanguageChange(event) {
