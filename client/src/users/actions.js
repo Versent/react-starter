@@ -173,6 +173,12 @@ let actionCreators = {
     }
   },
 
+  shuffleName() {
+    return {
+      type: actionTypes.shuffleName,
+    }
+  },
+
 }
 
 actionCreators = _.extend(actionCreators, baseActionCreators)

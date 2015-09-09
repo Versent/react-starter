@@ -53,6 +53,11 @@ class Comp extends React.Component {
     this.dispatch(action)
   }
 
+  onShuffleName() {
+    const action = actions.shuffleName()
+    this.dispatch(action)
+  }
+
   renderUsers() {
     return _.map(this.props.users, (user) => {
       return (
@@ -97,6 +102,9 @@ class Comp extends React.Component {
         <button
           className='btn'
           onClick={this.onRename.bind(this)}>Rename all Users</button>
+        <button
+          className='btn'
+          onClick={this.onShuffleName.bind(this)}>Shuffle all</button>
       </section>
     )
   }

@@ -6,16 +6,28 @@ import bows        from 'bows'
 const baseReducers = reduxCrud.reducersFor('users')
 const log = bows('users--reducer')
 
+function reverseName(user) {
+  let attributes = user.attributes
+  let name       = attributes.name
+  name = name.split('').reverse().join('')
+  attributes = attributes.merge({name})
+  return user.merge({attributes})
+}
+
+function shuffleName(user) {
+  let attributes = user.attributes
+  let name = attributes.name
+  name = name.split('').sort(()=> 0.5 - Math.random()).join('')
+  attributes = attributes.merge({name})
+  return user.merge({attributes})
+}
+
 function reducer(state=SI([]), action) {
   switch (action.type) {
   case actionTypes.renameAll:
-    return state.map(function(user) {
-      let attributes = user.attributes
-      let name       = attributes.name
-      name = name.split('').reverse().join('')
-      attributes = attributes.merge({name})
-      return user.merge({attributes})
-    })
+    return state.map(reverseName)
+  case actionTypes.shuffleName:
+    return state.map(shuffleName)
   default:
     return baseReducers(state, action)
   }
