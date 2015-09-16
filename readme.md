@@ -70,7 +70,7 @@ Front end linting (in ./client)
 -------------------------------------
 
 ```
-npm run lint
+make lint
 ```
 
 Front end unit tests (in ./client)

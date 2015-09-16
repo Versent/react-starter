@@ -15,7 +15,7 @@
   "scripts": {
     "start": "node dev_server.js",
     "test": "ava src/**/*.test.js",
-    "lint": "jscs ./src/**/*.js ./src/**/*.jsx"
+    "lint": "jscs ./src/*"
   },
   "homepage": "https://github.com/sporto/react-starter",
   "devDependencies": {

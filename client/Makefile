@@ -4,13 +4,8 @@ serve:
 
 # Run lint task for front end
 lint:
-	./node_modules/.bin/jscs ./src/** --verbose
+	./node_modules/.bin/jscs --verbose ./src/*
 
 # Check types on front end
 types:
 	flow check
-
-# Run FE unit tests
-test-unit:
-	./node_modules/.bin/mocha --recursive ./src/\**/*.test.*
-
