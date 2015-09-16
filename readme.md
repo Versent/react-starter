@@ -97,6 +97,8 @@ robo test ./src/users/Show.test.js
 
 ## TODO:
 
+- Test using CI
+- Code coverage
 - Dev using Docker?
 - Deployment with Docker
 - Flow type checker (Doesn't work with ES6)
