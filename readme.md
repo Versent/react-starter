@@ -65,16 +65,19 @@ forego start
 
 Open http://localhost:4002/
 
+Linting
+-------------------------------------
 
 Front end linting (in ./client)
--------------------------------------
 
 ```
 make lint
 ```
 
-Front end unit tests (in ./client)
+Testing
 -------------------------------------
+
+Front end unit tests (in ./client)
 
 ```
 npm test
