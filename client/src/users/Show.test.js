@@ -1,7 +1,8 @@
 import helper    from '../../test/dom_helper'
+const { _, React, sinon, test, testTree }  = helper()
+
 import Component from './Show.jsx'
 
-const { _, React, sinon, test, testTree }  = helper()
 const subject = 'uses--Show: '
 
 function render(props) {
@@ -67,12 +68,12 @@ test(subject + 'shows', function(t) {
   const props = makeProps()
   const comp = render(props)
 
-  t.equal(comp.label.innerText, props.user.attributes.name, 'the user name')
-  t.equal(comp.languages.length, 2, 'the languages')
+  t.same(comp.label.innerText, props.user.attributes.name, 'the user name')
+  t.same(comp.languages.length, 2, 'the languages')
   t.ok(comp.wrapperLanguages.innerText.match(/English/), 'the language')
   t.ok(comp.wrapperLanguages.innerText.match(/Spanish/), 'the language')
-  t.equal(comp.checkbox1.getAttribute('checked'), null, 'the linked language')
-  t.equal(comp.checkbox2.getAttribute('checked'), '', 'the non-linked language')
+  t.same(comp.checkbox1.getAttribute('checked'), null, 'the linked language')
+  t.same(comp.checkbox2.getAttribute('checked'), '', 'the non-linked language')
 
   t.end()
 })

@@ -20,6 +20,8 @@ Starter Application for React SPAs, this kit includes:
 
 ## Set up
 
+This project requires Node v4
+
 In ./app
 
 ```
