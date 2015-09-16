@@ -18,9 +18,12 @@ Starter Application for React SPAs, this kit includes:
 - [Webpack dev server](http://webpack.github.io/docs/webpack-dev-server.html)
 - [Webpack](http://webpack.github.io/)
 
-## Set up
+Set up
+-------------------------------------
 
 This project requires Node v4
+
+### Installing dependecies
 
 In ./app
 
@@ -36,7 +39,8 @@ In ./client
 npm install
 ```
 
-## Running
+Running
+-------------------------------------
 
 In ./app
 
@@ -50,6 +54,8 @@ In ./client
 npm start
 ```
 
+### Both
+
 Or using forego in root
 
 ```
@@ -60,13 +66,15 @@ forego start
 Open http://localhost:4002/
 
 
-## Front end linting (in ./client)
+Front end linting (in ./client)
+-------------------------------------
 
 ```
-gulp lint
+npm run lint
 ```
 
-## Front end unit tests (in ./client)
+Front end unit tests (in ./client)
+-------------------------------------
 
 ```
 npm test
