@@ -18,8 +18,8 @@ class Comp extends React.Component {
     return this.props.dispatch
   }
 
-  get router() {
-    return this.context.router
+  get history() {
+    return this.props.history
   }
 
   getUserId() {
@@ -41,12 +41,12 @@ class Comp extends React.Component {
   }
 
   onList(event) {
-    this.router.transitionTo('/users')
+    this.history.pushState(null, '/users')
   }
 
   onEdit(event) {
     const user = this.props.user
-    this.router.transitionTo(`/users/${user.id}/edit`)
+    this.history.pushState(null, `/users/${user.id}/edit`)
   }
 
   onLanguageChange(event) {

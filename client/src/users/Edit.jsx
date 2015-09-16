@@ -17,17 +17,17 @@ class Comp extends React.Component {
     return this.props.dispatch
   }
 
-  getRouter() {
-    return this.context.router
+  get history() {
+    return this.props.history
   }
 
   onList(event) {
-    this.getRouter().transitionTo('/users')
+    this.history.pushState(null, '/users')
   }
 
   onShow(event) {
     const user = this.props.user
-    this.getRouter().transitionTo(`/users/${user.id}`)
+    this.history.pushState(null, `/users/${user.id}`)
   }
 
   onCommit(user) {

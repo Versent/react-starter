@@ -13,7 +13,7 @@ import { Provider }                      from 'react-redux'
 import { Redirect, Router, Route }       from 'react-router'
 // import { devTools, persistState }        from 'redux-devtools'
 // import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react'
-import HashHistory                          from 'react-router/lib/HashHistory'
+import { createHashHistory }                from 'history'
 import reduxCrud                            from 'redux-crud'
 import addMiddleware                        from './shared/services/addMiddleware'
 import reduxLoader                          from 'redux-loader'
@@ -29,7 +29,7 @@ import LanguagesList   from './languages/ListLoader.jsx'
 
 addMiddleware()
 const log           = bows('app')
-const history       = new HashHistory()
+const history       = createHashHistory()
 
 const finalCreateStore = compose(
   applyMiddleware(

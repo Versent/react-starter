@@ -35,9 +35,8 @@ const Loader = reduxLoader.create({
     },
 
     user: function(options) {
-      const userId = options.context.router.state.params.id
+      const userId = options.props.params.id
       const id = `/users/${userId}`
-      // log('id', id)
 
       return {
         id,
