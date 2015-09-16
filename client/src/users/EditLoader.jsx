@@ -18,7 +18,7 @@ const Loader = loader.create({
   busy: Busy,
   resources: {
     user: function(options) {
-      const userId = options.context.router.state.params.id
+      const userId = options.props.params.id
       const id = `users/${userId}`
 
       return {

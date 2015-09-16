@@ -26,20 +26,18 @@ class Comp extends React.Component {
     return this.props.dispatch
   }
 
-  getRouter() {
-    return this.context.router
+  get history() {
+    return this.props.history
   }
 
   onShow(user, event) {
     event.preventDefault()
-    const router = this.getRouter()
-    router.transitionTo('/users/' + user.id)
+    this.history.pushState(null, '/users/' + user.id)
   }
 
   onEdit(user, event) {
     event.preventDefault()
-    const router = this.getRouter()
-    router.transitionTo('/users/' + user.id + '/edit')
+    this.history.pushState(null, '/users/' + user.id + '/edit')
   }
 
   onDelete(user, event) {
