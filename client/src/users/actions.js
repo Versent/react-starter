@@ -2,6 +2,7 @@ import _            from 'lodash'
 import axios        from 'axios'
 import bows         from 'bows'
 import reduxCrud    from 'redux-crud'
+import cuid         from 'cuid'
 
 import getApi       from '../shared/services/getApi'
 import actionTypes  from './actionTypes'
@@ -75,6 +76,9 @@ let actionCreators = {
 
   create(user) {
     return function(dispatch) {
+      const cid = cuid()
+      user = user.merge({id: cid})
+      // log('user', user)
       const optimisticAction = baseActionCreators.createStart(user)
       dispatch(optimisticAction)
 
@@ -83,14 +87,14 @@ let actionCreators = {
         url: url,
         method: 'POST',
         data: {
-          user,
+          user: user.attributes,
         },
       })
 
       promise.then(function(response) {
           // dispatch the success action
           const returnedUser = response.data.data
-          const successAction = baseActionCreators.createSuccess(returnedUser)
+          const successAction = baseActionCreators.createSuccess(returnedUser, cid)
           dispatch(successAction)
         }, function(response) {
           // rejection
@@ -116,7 +120,7 @@ let actionCreators = {
         url: url,
         method: 'PATCH',
         data: {
-          user,
+          user: user.attributes,
         },
       })
 
