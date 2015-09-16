@@ -2,6 +2,7 @@
 
 Starter Application for React SPAs, this kit includes:
 
+- [Ava](https://github.com/sindresorhus/ava) for JS unit tests
 - [Babel](https://babeljs.io/)
 - [BASSCSS](http://www.basscss.com/) for CSS
 - [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
@@ -14,7 +15,6 @@ Starter Application for React SPAs, this kit includes:
 - [Redux](https://github.com/rackt/redux)
 - [Robo](https://github.com/tj/robo) for running tasks
 - [Seamless-immmutable](https://github.com/rtfeldman/seamless-immutable)
-- [Tape](https://github.com/substack/tape) for JS unit tests
 - [Webpack dev server](http://webpack.github.io/docs/webpack-dev-server.html)
 - [Webpack](http://webpack.github.io/)
 
