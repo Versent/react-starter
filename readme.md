@@ -40,7 +40,7 @@ In ./client
 npm install
 ```
 
-Running
+Run
 -------------------------------------
 
 In ./app
@@ -66,7 +66,7 @@ forego start
 
 Open http://localhost:4002/
 
-Linting
+Lint
 -------------------------------------
 
 Front end linting (in ./client)
@@ -75,7 +75,7 @@ Front end linting (in ./client)
 make lint
 ```
 
-Testing
+Test
 -------------------------------------
 
 Front end unit tests (in ./client)
