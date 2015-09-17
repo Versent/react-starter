@@ -43,6 +43,7 @@
     "gulp-watch": "~4.3.5",
     "history": "^1.9.1",
     "invariant": "~2.1.0",
+    "istanbul": "^0.3.20",
     "joi": "~6.5.0",
     "jscs": "^2.1.1",
     "jscs-loader": "^0.2.0",

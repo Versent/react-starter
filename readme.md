@@ -80,7 +80,13 @@ Testing
 Front end unit tests (in ./client)
 
 ```
-npm test
+make test_
+```
+
+Testing with coverage:
+
+```
+make coverage_
 ```
 
 Watch mode:
