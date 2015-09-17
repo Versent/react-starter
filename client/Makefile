@@ -6,12 +6,14 @@ serve:
 lint:
 	./node_modules/.bin/jscs --verbose ./src/*
 
-test_:
+test:
 	./node_modules/.bin/ava ./src/**/*.test.js
 
-coverage_:
+coverage:
 	./node_modules/.bin/istanbul cover ./node_modules/.bin/ava ./src/**/*.test.js
 
 # Check types on front end
 types:
 	flow check
+
+.PHONY: coverage test

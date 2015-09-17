@@ -81,13 +81,13 @@ Testing
 Front end unit tests (in ./client)
 
 ```
-make test_
+make test
 ```
 
 Testing with coverage:
 
 ```
-make coverage_
+make coverage
 ```
 
 Watch mode:
