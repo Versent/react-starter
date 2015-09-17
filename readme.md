@@ -6,6 +6,7 @@ Starter Application for React SPAs, this kit includes:
 - [Babel](https://babeljs.io/)
 - [BASSCSS](http://www.basscss.com/) for CSS
 - [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
+- [Istanbul](https://github.com/gotwarlost/istanbul)
 - [JSCS](http://jscs.info/) For JS linting
 - [Phoenix](http://www.phoenixframework.org/) as backend
 - [React Router](https://github.com/rackt/react-router)
