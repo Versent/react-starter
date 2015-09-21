@@ -10,14 +10,13 @@ defmodule App.Router do
     # plug CORSPlug
   end
 
-
   pipeline :api do
 
     # plug CORSPlug
     # plug PlugCors, origins: ["*"]
     # plug :accepts, ["json"]
     plug :accepts, ["json-api"]
-    plug PlugCors, origins: ["http://localhost:4002", "*.domain.com"], methods: ["GET", "POST", "DELETE", "PATCH"], headers: ["Authorization"]
+    plug PlugCors, origins: ["*"], methods: ["GET", "POST", "DELETE", "PATCH", "OPTIONS"], headers: ["Authorization"]
     # plug JaSerializer.ContentTypeNegotiation
   end
 
@@ -42,8 +41,6 @@ defmodule App.Router do
     resources "/users", UsersController
     options   "/users", UsersController, :options
     options   "/users/:id", UsersController, :options
-    
-    
 
   end
 end
