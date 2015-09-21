@@ -36,14 +36,11 @@ class Comp extends React.Component {
     event.preventDefault()
     let language = this.props.language
     let attributes = language.attributes
-    // log(attributes)
-    // attributes = attributes.merge(this.state)
+    
+    attributes = attributes.merge(this.state)
+    language = language.merge({attributes})
 
-    // language = language.merge({attributes})
-    attributes = attributes.merge(this.state).merge({id: language.id})
-    // log(attributes)
-
-    this.props.onCommit(attributes)
+    this.props.onCommit(language)
   }
 
   render() {
