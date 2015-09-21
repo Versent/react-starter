@@ -1,4 +1,4 @@
 tmp
 Dockerfile
 .env
-deps
+_build

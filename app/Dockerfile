@@ -7,19 +7,24 @@ RUN apt-get install -y \
   wget \
   curl \
   dnsutils \
-  netcat
+  netcat \
+  gcc
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+RUN dpkg-reconfigure locales
 
 RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
   dpkg -i erlang-solutions_1.0_all.deb
 
 RUN apt-get update
-RUN apt-get install postgresql-client elixir -y
+RUN apt-get install -y \
+  postgresql-client \
+  erlang-dev \
+  elixir
 
 # Install local Elixir hex and rebar
 RUN /usr/local/bin/mix local.hex --force && \

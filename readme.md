@@ -20,7 +20,7 @@ Starter Application for React SPAs, this kit includes:
 - [Webpack](http://webpack.github.io/)
 
 Set up
---------------------
+----------------
 
 1. Install Docker and Docker-compose
 
@@ -38,58 +38,17 @@ make build-containers
 ```
 
 Run
--------------------
-
-
-
-
-
-
-
-### Installing dependecies
-
-In ./app
+----------------
 
 ```
-mix deps.get
-mix ecto.create
-mix ecto.migrate
+docker-compose up
 ```
 
-In ./client
+Open http://ip_or_host_to_docker_vm:4002/
 
-```
-npm install
-```
-
-Run
--------------------------------------
-
-In ./app
-
-```
-mix phoenix.server
-```
-
-In ./client
-
-```
-npm start
-```
-
-### Both
-
-Or using forego in root
-
-```
-brew install forego
-forego start
-```
-
-Open http://localhost:4002/
 
 Lint
--------------------------------------
+----------------
 
 Front end linting (in ./client)
 
@@ -98,7 +57,7 @@ make lint
 ```
 
 Test
--------------------------------------
+----------------
 
 Front end unit tests (in ./client)
 
