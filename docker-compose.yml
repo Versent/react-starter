@@ -1,6 +1,8 @@
 react_starter_client:
   build: ./client
   command: ./start-dev.sh
+  ports:
+    - "4002:4002"
   volumes_from:
    - react_starter_data
   volumes:

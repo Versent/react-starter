@@ -5,6 +5,8 @@ var config  = require('./webpack.config')
 
 var app = express()
 var compiler = webpack(config)
+var host = 'localhost'
+var port = 4002
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -17,11 +19,11 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
-app.listen(4002, 'localhost', function(err) {
+app.listen(port, function(err) {
   if (err) {
     console.log(err)
     return
   }
 
-  console.log('Listening at http://localhost:4002')
+  console.log('Listening at ' + host + ':' + port)
 })
