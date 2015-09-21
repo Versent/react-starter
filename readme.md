@@ -19,9 +19,31 @@ Starter Application for React SPAs, this kit includes:
 - [Webpack](http://webpack.github.io/)
 
 Set up
--------------------------------------
+--------------------
 
-This project requires Node v4
+1. Install Docker and Docker-compose
+
+
+2. Create data container
+
+```
+make build-data
+```
+
+3. Build all container
+
+```
+make build-containers
+```
+
+Run
+-------------------
+
+
+
+
+
+
 
 ### Installing dependecies
 

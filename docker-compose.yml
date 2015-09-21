@@ -1,0 +1,40 @@
+react_starter_pg:
+  image: postgres
+  expose:
+   - "5432"
+
+react_starter_client:
+  build: ./client
+  command: ./start-dev.sh
+  volumes_from:
+   - react_starter_data
+  volumes:
+   - ./client:/usr/src/app
+   - ./app/priv/static/bundles:/dist
+
+react_starter_app:
+  build: ./app
+  ports:
+    - "4000:4000"
+  command: ./start-dev.sh
+  volumes_from:
+   - react_starter_data
+  volumes:
+    - ./app:/usr/src/app
+  links:
+    - react_starter_pg
+  environment:
+    DATABASE_URL: postgres://postgres@react_starter_pg:5432/devdb
+    DB_HOST: react_starter_pg
+    DB_PORT: 5432
+    MIX_ENV: dev
+    PORT: 4000 # Phoenix will run here
+    SECRET_KEY_BASE: ROVUTvlLcWEYSw+3oczyMV4VWycWQjnHzaN7AUKwkEQWXYRnax+W18JXbyWUU0AR
+
+# react_starter_nginx:
+#   build: ./nginx
+#   ports:
+#   - "80:80"
+#   links:
+#   - react_starter_app
+
