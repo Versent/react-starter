@@ -1,4 +1,5 @@
 import _                     from 'lodash'
+import SI                    from 'seamless-immutable'
 import React                 from 'react'
 import Router                from 'react-router'
 import bows                  from 'bows'
@@ -58,10 +59,12 @@ class Comp extends React.Component {
     if (languageUser) {
       action = languagesUsersActions.delete(languageUser)
     } else {
-      languageUser = {
-        language_id: value,
-        user_id: userId,
-      }
+      languageUser = SI({
+        attributes: {
+          language_id: value,
+          user_id: userId,
+        }
+      })
       action = languagesUsersActions.create(languageUser)
     }
     this.getDispatch()(action)

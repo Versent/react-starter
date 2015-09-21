@@ -3,6 +3,7 @@ import reduxCrud    from 'redux-crud'
 import axios        from 'axios'
 import getApi       from '../shared/services/getApi'
 import bows         from 'bows'
+import cuid         from 'cuid'
 
 const baseActionCreators = reduxCrud.actionCreatorsFor('languages_users')
 const host = getApi()
@@ -43,6 +44,9 @@ let actionCreators = {
 
   create(languageUser) {
     return function(dispatch) {
+      const cid = cuid()
+      languageUser = languageUser.merge({id: cid})
+
       const optimisticAction = baseActionCreators.createStart(languageUser)
       dispatch(optimisticAction)
 
@@ -51,14 +55,14 @@ let actionCreators = {
         url: url,
         method: 'POST',
         data: {
-          language_user: languageUser,
+          language_user: languageUser.attributes,
         },
       })
 
       promise.then(function(response) {
           // dispatch the success action
           const returned = response.data.data
-          const successAction = baseActionCreators.createSuccess(returned)
+          const successAction = baseActionCreators.createSuccess(returned, cid)
           dispatch(successAction)
         }, function(response) {
           // rejection
