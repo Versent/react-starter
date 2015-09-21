@@ -6,6 +6,7 @@ Starter Application for React SPAs, this kit includes:
 - [Babel](https://babeljs.io/)
 - [BASSCSS](http://www.basscss.com/) for CSS
 - [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
+- [Istanbul](https://github.com/gotwarlost/istanbul)
 - [JSCS](http://jscs.info/) For JS linting
 - [Phoenix](http://www.phoenixframework.org/) as backend
 - [React Router](https://github.com/rackt/react-router)
@@ -61,7 +62,7 @@ In ./client
 npm install
 ```
 
-Running
+Run
 -------------------------------------
 
 In ./app
@@ -87,7 +88,7 @@ forego start
 
 Open http://localhost:4002/
 
-Linting
+Lint
 -------------------------------------
 
 Front end linting (in ./client)
@@ -96,13 +97,19 @@ Front end linting (in ./client)
 make lint
 ```
 
-Testing
+Test
 -------------------------------------
 
 Front end unit tests (in ./client)
 
 ```
-npm test
+make test
+```
+
+Testing with coverage:
+
+```
+make coverage
 ```
 
 Watch mode:
@@ -119,6 +126,8 @@ robo test ./src/users/Show.test.js
 
 ## TODO:
 
+- Test using CI
+- Code coverage
 - Dev using Docker?
 - Deployment with Docker
 - Flow type checker (Doesn't work with ES6)

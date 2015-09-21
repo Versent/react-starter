@@ -1,2 +1,2 @@
 test:
-  command: node_modules/babel-tape-runner/bin/babel-tape-runner ${1}
+  command: ./node_modules/.bin/ava ${1}

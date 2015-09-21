@@ -6,3 +6,4 @@ npm-debug.log
 .env
 *.sublime-*
 web/db.db
+client/coverage
