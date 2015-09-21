@@ -1,3 +1,3 @@
 export default function() {
-  return 'http://localhost:4000/api'
+  return `http://${window.location.hostname}:4000/api`
 }
