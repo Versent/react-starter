@@ -7,3 +7,4 @@ npm-debug.log
 *.sublime-*
 web/db.db
 client/coverage
+app/react_starter_dev

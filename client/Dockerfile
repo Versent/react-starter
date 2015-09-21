@@ -2,6 +2,8 @@ FROM node:4
 
 ENV REFRESHED_AT 2015-09-20
 
+RUN npm install -g npm@3
+
 RUN npm i -g webpack
 RUN npm i -g jscs
 
