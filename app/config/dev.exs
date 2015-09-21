@@ -35,7 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :app, App.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "Sebastian",
+  username: "postgres",
   password: "",
-  database: "react_starter_dev",
+  database: "dev",
+  hostname: "react_starter_pg",
   pool_size: 10

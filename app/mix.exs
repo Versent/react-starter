@@ -23,7 +23,7 @@ defmodule App.Mixfile do
       :cowboy,
       :logger,
       :phoenix_ecto,
-      :sqlite_ecto
+      :postgrex
       ]
     ]
   end
@@ -45,7 +45,7 @@ defmodule App.Mixfile do
       {:plug_cors, "~> 0.7.3"},
       {:phoenix_html, "~> 2.1"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:sqlite_ecto, "~> 1.0.0"}
+      {:postgrex, ">= 0.0.0"}
     ]
   end
 end
