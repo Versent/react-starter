@@ -87,13 +87,14 @@ ava ./src/users/Show.test.js
 
 ## Isues:
 
-- HMR not working anymore
+- HMR doesnt work anymore
 
 - Wepback dev server only work when editing files in VM, (can't use Sublime in host computer)
 Possible fix: Using webpack watch instead
 
 ## TODO:
 
+- Fix HMR
 - Production webpack
 - Using production version of seamless-immutable
 - Test using CI
