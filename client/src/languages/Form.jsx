@@ -36,7 +36,6 @@ class Comp extends React.Component {
     event.preventDefault()
     let language = this.props.language
     let attributes = language.attributes
-    
     attributes = attributes.merge(this.state)
     language = language.merge({attributes})
 

@@ -50,19 +50,15 @@ Open http://ip_or_host_to_docker_vm:4002/
 Lint
 ----------------
 
-Front end linting (in ./client)
-
 ```
-make lint
+make client-lit
 ```
 
 Test
 ----------------
 
-Front end unit tests (in ./client)
-
 ```
-make test
+make client-test
 ```
 
 Testing with coverage:

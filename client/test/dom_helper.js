@@ -1,32 +1,31 @@
-var jsdom    = require('jsdom').jsdom
-var ava      = require('ava')
-var testTree = require('react-test-tree')
-var sinon    = require('sinon')
-var _        = require('lodash')
-var bows     = require('bows')
-var React
+process.env.NODE_ENV = 'test'
 
-function init() {
+import _           from 'lodash'
+import ava         from 'ava'
+import bows        from 'bows'
+import sinon       from 'sinon'
+import testTree    from 'react-test-tree'
+import { jsdom }   from 'jsdom'
 
-  var host = 'http://localhost'
+let React
+const host        = 'http://localhost'
+const defaultHTML = '<html><body></body></html>'
+
+export default function() {
 
   // if already called in another test file bail out
   if (typeof document == 'undefined') {
-    var defaultHTML = '<html><body></body></html>'
-    var options = {
+    const options = {
       html: defaultHTML,
       host: host,
     }
-    var doc = jsdom(defaultHTML, options)
-    var win = doc.defaultView
-    // win.GLOBALS = {
-    //   api_host: host
-    // }
+    const doc = jsdom(defaultHTML, options)
+    const win = doc.defaultView
 
     win.localStorage = require('localStorage')
     win.localStorage.debug = true
 
-    var nav = win.navigator = {}
+    const nav = win.navigator = {}
     nav.userAgent  = 'NodeJs JsDom'
     nav.appVersion = ''
 
@@ -38,7 +37,6 @@ function init() {
   // React need to be required after calling jsdom
   React = React || require('react/addons')
 
-  // This is the primary interface to the helper object
   return {
     _,
     host,
@@ -49,5 +47,3 @@ function init() {
   }
 
 }
-
-module.exports = init

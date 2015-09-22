@@ -18,3 +18,9 @@ app-sh:
 
 client-sh:
 	docker-compose run react_starter_client /bin/bash
+
+client-lint:
+	docker-compose run react_starter_client make lint
+
+client-test:
+	docker-compose run react_starter_client make test

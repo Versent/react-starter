@@ -1,7 +1,7 @@
 import helper    from '../../test/dom_helper'
 const { _, React, sinon, test, testTree }  = helper()
 
-import Component from './Show.jsx'
+let Component
 
 const subject = 'uses--Show: '
 
@@ -63,6 +63,11 @@ function makeProps() {
     user:           user,
   }
 }
+
+test.before(function(t) {
+  Component = require('./Show.jsx')
+  t.end()
+})
 
 test(subject + 'shows', function(t) {
   const props = makeProps()

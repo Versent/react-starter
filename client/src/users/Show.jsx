@@ -1,10 +1,10 @@
 import _                     from 'lodash'
-import SI                    from 'seamless-immutable'
+import bows                  from 'bows'
 import React                 from 'react'
 import Router                from 'react-router'
-import bows                  from 'bows'
-import makeClassAdder        from '../shared/services/makeClassAdder.js'
+import SI                    from 'seamless-immutable'
 import { connect }           from 'react-redux'
+import makeClassAdder        from '../shared/services/makeClassAdder.js'
 import actions               from './actions'
 import languagesUsersActions from '../languages_users/actions'
 
@@ -63,7 +63,7 @@ class Comp extends React.Component {
         attributes: {
           language_id: value,
           user_id: userId,
-        }
+        },
       })
       action = languagesUsersActions.create(languageUser)
     }
