@@ -102,7 +102,7 @@ class Comp extends React.Component {
           onClick={this.onRename.bind(this)}>Rename all Users</button>
         <button
           className='btn'
-          onClick={this.onShuffleName.bind(this)}>Shuffle all</button>
+          onClick={this.onShuffleName.bind(this)}>Shuffle all Useru</button>
       </section>
     )
   }

@@ -2,7 +2,7 @@
   "disallowMixedSpacesAndTabs": "smart",
   "disallowSemicolons": true,
   "disallowTrailingComma": false,
-  "esprima": "esprima-fb",
+  "esnext": true,
   "fileExtensions": [".js", ".jsx"],
   "preset": "airbnb",
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",

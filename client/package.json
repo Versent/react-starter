@@ -23,9 +23,9 @@
     "autoprefixer-loader": "~2.0.0",
     "ava": "^0.2.0",
     "axios": "~0.5.4",
-    "babel-core": "~5.6.15",
-    "babel-loader": "~5.2.2",
-    "babel-plugin-react-transform": "^1.0.2",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "babel-plugin-react-transform": "^1.0.5",
     "basscss": "~7.0.0",
     "bluebird": "~2.9.30",
     "bows": "~1.4.3",
@@ -58,10 +58,8 @@
     "react-redux": "^2.1.2",
     "react-router": "^1.0.0-rc1",
     "react-test-tree": "^0.3.1",
-    "react-transform-catch-errors": "^0.1.1",
     "react-transform-hmr": "^1.0.0",
     "react-widgets": "~2.7.4",
-    "redbox-react": "^1.0.4",
     "redux": "^3.0.0",
     "redux-crud": "^0.5.0",
     "redux-loader": "^0.4.0",
@@ -75,6 +73,6 @@
     "watch": "^0.16.0",
     "webpack": "^1.12.1",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.0.0"
+    "webpack-hot-middleware": "^2.2.0"
   }
 }

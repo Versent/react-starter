@@ -85,8 +85,17 @@ make client-sh
 ava ./src/users/Show.test.js
 ```
 
+## Isues:
+
+- HMR not working anymore
+
+- Wepback dev server only work when editing files in VM, (can't use Sublime in host computer)
+Possible fix: Using webpack watch instead
+
 ## TODO:
 
+- Production webpack
+- Using production version of seamless-immutable
 - Test using CI
 - Deployment with Docker
 - Flow type checker (Doesn't work with ES6)

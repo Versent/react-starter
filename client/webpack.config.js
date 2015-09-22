@@ -33,6 +33,11 @@ module.exports = {
       './src/app.jsx',
     ],
   },
+  // watchOptions only works with CLI (not dev server)
+  // watchOptions: {
+  //   aggregateTimeout: 300,
+  //   poll: 1000,
+  // },
   output: {
     path: path.join(__dirname, 'public', 'bundles'),
     filename:    '[name].js',
@@ -69,6 +74,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('bundle.css'),
