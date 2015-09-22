@@ -1,5 +1,3 @@
-/* @flow */
-
 import classNames from 'classnames'
 
 function makeClasses(block) {

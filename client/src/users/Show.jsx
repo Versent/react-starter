@@ -1,3 +1,5 @@
+/* @flow */
+
 import _                     from 'lodash'
 import bows                  from 'bows'
 import React                 from 'react'
@@ -15,42 +17,42 @@ const log             = bows(baseClass)
 
 class Comp extends React.Component {
 
-  getDispatch() {
+  getDispatch():any {
     return this.props.dispatch
   }
 
-  get history() {
+  get history():any {
     return this.props.history
   }
 
-  getUserId() {
+  getUserId():any {
     return this.props.user.id
   }
 
-  getLanguageUser(languageId) {
+  getLanguageUser(languageId:Number):Object {
     const userId = this.getUserId()
     return _.find(this.props.languagesUsers, function(item) {
       return item.attributes.user_id == userId && item.attributes.language_id == languageId
     })
   }
 
-  getLanguageChecked(languageId) {
+  getLanguageChecked(languageId:Number):Boolean {
     // log('languagesUsers', this.props.languagesUsers)
     const languageUser = this.getLanguageUser(languageId)
     // log(languageUser)
     return !!languageUser
   }
 
-  onList(event) {
+  onList(event:any):void {
     this.history.pushState(null, '/users')
   }
 
-  onEdit(event) {
+  onEdit(event:any):void {
     const user = this.props.user
     this.history.pushState(null, `/users/${user.id}/edit`)
   }
 
-  onLanguageChange(event) {
+  onLanguageChange(event:any):void {
     // log('onLanguageChange', event.target)
     const { value } = event.target
     const userId  = this.getUserId()
@@ -70,7 +72,7 @@ class Comp extends React.Component {
     this.getDispatch()(action)
   }
 
-  renderCheckboxForLang(language) {
+  renderCheckboxForLang(language:Object):any {
     const checked = this.getLanguageChecked(language.id)
     const ref = 'checkbox' + language.id
 
@@ -87,7 +89,7 @@ class Comp extends React.Component {
     )
   }
 
-  renderLanguages() {
+  renderLanguages():any {
     // log(this.props.languages)
     return (
       <div ref='wrapperLanguages' refCollection='languages'>
@@ -96,7 +98,7 @@ class Comp extends React.Component {
     )
   }
 
-  render() {
+  render():any {
     const user = this.props.user
     return (
       <section className={`${classAdder()} p2`}>

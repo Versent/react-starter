@@ -1,5 +1,3 @@
-/* @flow */
-
 import React          from 'react'
 import makeClassAdder from './services/makeClassAdder.js'
 import Icon           from 'react-fa'

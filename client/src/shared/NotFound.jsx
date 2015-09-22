@@ -1,5 +1,3 @@
-/* @flow */
-
 import React          from 'react'
 import makeClassAdder from '../shared/services/makeClassAdder.js'
 import './NotFound.less'

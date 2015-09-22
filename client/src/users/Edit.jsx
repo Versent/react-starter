@@ -1,3 +1,5 @@
+/* @flow */
+
 import React          from 'react'
 import Router         from 'react-router'
 import bows           from 'bows'
@@ -13,31 +15,31 @@ const log             = bows(baseClass)
 
 class Comp extends React.Component {
 
-  getDispatch() {
+  getDispatch():any {
     return this.props.dispatch
   }
 
-  get history() {
+  get history():any {
     return this.props.history
   }
 
-  onList(event) {
+  onList(event:any):void {
     this.history.pushState(null, '/users')
   }
 
-  onShow(event) {
+  onShow(event:any):void {
     const user = this.props.user
     this.history.pushState(null, `/users/${user.id}`)
   }
 
-  onCommit(user) {
+  onCommit(user:Object):void {
     log('onCommit', user)
     const action = actions.update(user)
     const dispatch = this.props.dispatch
     dispatch(action)
   }
 
-  renderForm() {
+  renderForm():void {
     return (
       <div>
         <input />
@@ -45,7 +47,7 @@ class Comp extends React.Component {
     )
   }
 
-  render() {
+  render():void {
     const user = this.props.user
     return (
       <section className={`${classAdder()} p2`}>
