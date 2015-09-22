@@ -24,3 +24,6 @@ client-lint:
 
 client-test:
 	docker-compose run react_starter_client make test
+
+client-test-coverage:
+	docker-compose run react_starter_client make test-coverage

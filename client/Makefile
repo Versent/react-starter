@@ -9,7 +9,7 @@ lint:
 test:
 	ava ./src/**/*.test.js
 
-coverage:
+test-coverage:
 	istanbul cover ava ./src/**/*.test.js
 
 # Check types on front end

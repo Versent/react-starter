@@ -64,7 +64,7 @@ make client-test
 Testing with coverage:
 
 ```
-make coverage
+make client-test-coverage
 ```
 
 Watch mode:
