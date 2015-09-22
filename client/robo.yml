@@ -1,2 +1,0 @@
-test:
-  command: ./node_modules/.bin/ava ${1}

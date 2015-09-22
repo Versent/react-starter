@@ -15,6 +15,7 @@
   "scripts": {
     "start": "node dev_server.js",
     "test": "ava src/**/*.test.js",
+    "test-watch": "watch 'npm test' src/",
     "lint": "jscs ./src/*"
   },
   "homepage": "https://github.com/sporto/react-starter",
@@ -35,12 +36,7 @@
     "dotenv": "~1.1.0",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "~0.8.2",
-    "faucet": "0.0.1",
     "file-loader": "~0.8.4",
-    "gulp": "^3.9.0",
-    "gulp-jscs": "^2.0.0",
-    "gulp-shell": "~0.4.3",
-    "gulp-watch": "~4.3.5",
     "history": "^1.9.1",
     "invariant": "~2.1.0",
     "istanbul": "^0.3.20",
@@ -76,6 +72,7 @@
     "siu": "~0.3.1",
     "style-loader": "~0.12.3",
     "url-loader": "~0.5.6",
+    "watch": "^0.16.0",
     "webpack": "^1.12.1",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.0.0"

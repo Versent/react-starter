@@ -57,26 +57,32 @@ make client-lit
 Test
 ----------------
 
+### Run all tests:
+
 ```
 make client-test
 ```
 
-Testing with coverage:
+### Testing with coverage:
 
 ```
 make client-test-coverage
 ```
 
-Watch mode:
+### Watch mode:
 
 ```
-gulp test-watch
+make client-sh
+npm run test-watch
 ```
 
-Running single test:
+### Running single test:
+
+Shell into container and run test:
 
 ```
-robo test ./src/users/Show.test.js
+make client-sh
+ava ./src/users/Show.test.js
 ```
 
 ## TODO:
