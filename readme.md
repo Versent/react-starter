@@ -87,7 +87,7 @@ ava ./src/users/Show.test.js
 
 ## Isues:
 
-- HMR doesnt work anymore
+- HMR doesnt work anymore https://github.com/gaearon/react-transform-hmr
 
 - Wepback dev server only work when editing files in VM, (can't use Sublime in host computer)
 Possible fix: Using webpack watch instead
