@@ -38,11 +38,6 @@ module.exports = {
   //   aggregateTimeout: 300,
   //   poll: 1000,
   // },
-  output: {
-    path: path.join(__dirname, 'public', 'bundles'),
-    filename:    '[name].js',
-    publicPath:  publicPath,
-  },
   module: {
     preLoaders: [{
       test:    /\.js|\.jsx$/,
@@ -73,15 +68,20 @@ module.exports = {
       },
     ],
   },
+  node: { // mocks for Joi validation
+    net: 'empty',
+    tls: 'empty',
+    dns: 'empty',
+  },
+  output: {
+    path: path.join(__dirname, 'public', 'bundles'),
+    filename:    '[name].js',
+    publicPath:  publicPath,
+  },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('bundle.css'),
   ],
-  node: { // mocks for Joi validation
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty',
-  },
 }
